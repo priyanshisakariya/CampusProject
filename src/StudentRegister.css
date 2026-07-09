@@ -1,0 +1,125 @@
+.register-container {
+    width: 420px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #EDCEE1;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(107, 68, 90, 0.3);
+}
+
+
+.register-container h2 {
+    text-align: center;
+    color: #6B445A;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+
+.register-container label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #6B445A;
+}
+
+
+.register-container input,
+.register-container select {
+
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #6B445A;
+    border-radius: 8px;
+
+    font-size: 15px;
+    background-color: white;
+
+    outline: none;
+    box-sizing: border-box;
+}
+
+
+.register-container input:focus,
+.register-container select:focus {
+
+    border: 2px solid #6B445A;
+    box-shadow: 0px 0px 6px rgba(107, 68, 90, 0.4);
+
+}
+
+
+.register-container button {
+
+    width: 100%;
+    margin-top: 25px;
+
+    padding: 12px;
+
+    background-color: #6B445A;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.register-container button:hover {
+
+    background-color: #4f3042;
+
+}
+.login-link {
+
+    text-align: center;
+    margin-top: 20px;
+    color: #6B445A;
+    font-size: 15px;
+
+}
+
+
+.login-link span {
+
+    color: #6B445A;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 5px;
+
+}
+
+
+.login-link span:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* Page background */
+body {
+
+    background-color: #EDCEE1;
+
+}
+
+
+/* Mobile Responsive */
+@media screen and (max-width: 500px) {
+
+    .register-container {
+
+        width: 90%;
+        padding: 20px;
+
+    }
+
+}

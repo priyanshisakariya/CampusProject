@@ -29,7 +29,28 @@ body{
     z-index:1000;
     box-shadow:0 4px 15px rgba(0,0,0,0.15);
 }
+/* Logo */
 
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #FFFFFF;
+
+}
+
+.logo h2{
+    color:#FFFFFF;
+    font-size:26px;
+    font-weight:700;
+}
 /* Logo */
 
 .logo h2{

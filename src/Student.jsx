@@ -1,11 +1,16 @@
 
 import "./Student.css";
-
+import Header from "./Header";
+import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 function Student() {
+  const navigate = useNavigate();
   return (
+    <>
+     <Header/>
     <div className="home">
       <div className="home-container">
-
+       
         <h1>Student Project Tracking Tool</h1>
 
         <h2>One Platform for Students, Faculty, and Administrators</h2>
@@ -19,9 +24,8 @@ function Student() {
 
         <div className="portal-buttons">
 
-          <button>
-            🎓 Student Portal
-          </button>
+     <button  className="register-btn"  onClick={() => navigate("/register")}> 🎓 Student Portal</button>
+    
 
           <button>
             👩‍🏫 Faculty Portal
@@ -35,6 +39,8 @@ function Student() {
 
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 
