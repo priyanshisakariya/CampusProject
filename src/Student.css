@@ -1,0 +1,110 @@
+/* Student.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f4c81, #1e88e5);
+}
+
+.home {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.home-container {
+    width: 90%;
+    max-width: 900px;
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.home-container h1 {
+    color: #0f4c81;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.home-container h2 {
+    color: #555;
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+.description {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.portal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.portal-buttons button {
+    width: 220px;
+    padding: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #0f4c81;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.portal-buttons button:hover {
+    background: #1565c0;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.portal-buttons button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .home-container {
+        padding: 30px 20px;
+    }
+
+    .home-container h1 {
+        font-size: 30px;
+    }
+
+    .home-container h2 {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .portal-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .portal-buttons button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
