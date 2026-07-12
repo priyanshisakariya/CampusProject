@@ -1,0 +1,291 @@
+/* =========================================
+   STUDENT PORTAL
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f9ff;
+    overflow:hidden;
+}
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.portal{
+    display:flex;
+    width:100%;
+    height:100vh;
+    background:
+    radial-gradient(circle at top left,
+    rgba(80,170,255,.15),
+    transparent 35%),
+
+    radial-gradient(circle at bottom right,
+    rgba(90,190,255,.15),
+    transparent 35%),
+
+    linear-gradient(
+    135deg,
+    #F9FCFF 0%,
+    #EEF6FF 40%,
+    #E5F0FC 100%);
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+
+    width:270px;
+
+    background:rgba(255,255,255,.65);
+
+    backdrop-filter:blur(18px);
+
+    border-right:1px solid rgba(255,255,255,.6);
+
+    padding:25px;
+
+    transition:.35s;
+
+    overflow:hidden;
+
+    box-shadow:5px 0 20px rgba(0,0,0,.05);
+
+}
+
+.sidebar.active{
+    width:270px;
+}
+
+.sidebar:not(.active){
+    width:0;
+    padding:0;
+    border:none;
+}
+
+.sidebar:not(.active) *{
+    display:none;
+}
+
+.sidebar h2{
+
+    text-align:center;
+
+    color:#173B63;
+
+    margin-bottom:35px;
+
+    font-size:28px;
+
+}
+
+.sidebar a{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:#173B63;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    margin-bottom:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.sidebar a:hover{
+
+    background:#2F80ED;
+
+    color:#fff;
+
+    transform:translateX(6px);
+
+}
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.main{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar{
+
+    height:80px;
+
+    background:rgba(255,255,255,.65);
+
+    backdrop-filter:blur(18px);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 35px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+
+}
+
+.top-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#173B63;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.menu-btn:hover{
+
+    background:#E8F2FF;
+
+    color:#2F80ED;
+
+}
+
+.portal-title{
+
+    font-size:32px;
+
+    color:#173B63;
+
+    font-weight:700;
+
+}
+
+.user-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.bell{
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.profile img{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.profile span{
+
+    font-weight:600;
+
+    color:#173B63;
+
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content{
+
+    flex:1;
+
+    padding:35px;
+
+    overflow:auto;
+
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:768px){
+
+.topbar{
+    padding:0 15px;
+}
+
+.portal-title{
+    font-size:24px;
+}
+
+.profile span{
+    display:none;
+}
+
+}

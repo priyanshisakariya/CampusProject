@@ -21,8 +21,6 @@ function StudentLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(login);
-
     try {
       const response = await fetch("http://localhost:8081/student/login", {
         method: "POST",
@@ -36,9 +34,10 @@ function StudentLogin() {
         const data = await response.json();
 
         console.log(data);
+
         alert("Login Successful!");
 
-        navigate("/student-dashboard");
+        navigate("/student-portal");
       } else {
         alert("Invalid Name or Password!");
       }
@@ -92,7 +91,7 @@ function StudentLogin() {
 
         <p className="register-link">
           Don't have an account?
-          <span onClick={() => navigate("/student-register")}>
+          <span onClick={() => navigate("/register")}>
             {" "}Register
           </span>
         </p>
