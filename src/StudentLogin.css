@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.login-container{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:120px 20px;
+
+    background-image:url("./assets/background.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+}
+
+.login-card{
+
+    width:100%;
+    max-width:450px;
+
+    background:rgba(255,255,255,.22);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:25px;
+
+    padding:45px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.login-card h2{
+
+    text-align:center;
+
+    color:#173B63;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#4B5563;
+
+    margin-bottom:35px;
+
+}
+
+.login-card label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    color:#173B63;
+
+    font-weight:600;
+
+}
+
+.login-card input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    background:rgba(255,255,255,.75);
+
+    font-size:15px;
+
+}
+
+.login-card input:focus{
+
+    border:2px solid #2F80ED;
+
+}
+
+.login-card button{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2F80ED;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-card button:hover{
+
+    background:#1565D8;
+
+}
+
+.register-link{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#475569;
+
+}
+
+.register-link span{
+
+    color:#2F80ED;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin-left:6px;
+
+}
+
+.register-link span:hover{
+
+    text-decoration:underline;
+
+}

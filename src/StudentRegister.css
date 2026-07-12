@@ -1,125 +1,226 @@
-.register-container {
-    width: 420px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #EDCEE1;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(107, 68, 90, 0.3);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
+/* ===========================
+   BACKGROUND
+=========================== */
 
-.register-container h2 {
-    text-align: center;
-    color: #6B445A;
-    margin-bottom: 25px;
-    font-size: 28px;
+body{
+    overflow-x:hidden;
 }
 
+.register-container{
 
-.register-container label {
-    display: block;
-    margin-top: 12px;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #6B445A;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:120px 20px;
+
+    background-image:url("./assets/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 }
 
+/* ===========================
+   GLASS CARD
+=========================== */
+
+.register-container form{
+
+    width:100%;
+    max-width:500px;
+
+    background:rgba(255,255,255,.22);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+/* ===========================
+   TITLE
+=========================== */
+
+.register-container h2{
+
+    position:absolute;
+    top:45px;
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:38px;
+
+    color:#173B63;
+
+    font-weight:700;
+
+}
+
+/* ===========================
+   LABELS
+=========================== */
+
+.register-container label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    color:#173B63;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   INPUTS
+=========================== */
 
 .register-container input,
-.register-container select {
+.register-container select{
 
-    width: 100%;
-    padding: 12px;
+    width:100%;
 
-    border: 1px solid #6B445A;
-    border-radius: 8px;
+    padding:14px;
 
-    font-size: 15px;
-    background-color: white;
+    border:none;
 
-    outline: none;
-    box-sizing: border-box;
+    border-radius:10px;
+
+    background:rgba(255,255,255,.75);
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
 }
-
 
 .register-container input:focus,
-.register-container select:focus {
+.register-container select:focus{
 
-    border: 2px solid #6B445A;
-    box-shadow: 0px 0px 6px rgba(107, 68, 90, 0.4);
+    border:2px solid #2F80ED;
 
-}
-
-
-.register-container button {
-
-    width: 100%;
-    margin-top: 25px;
-
-    padding: 12px;
-
-    background-color: #6B445A;
-    color: white;
-
-    border: none;
-    border-radius: 8px;
-
-    font-size: 17px;
-    font-weight: bold;
-
-    cursor: pointer;
+    box-shadow:0 0 10px rgba(47,128,237,.35);
 
 }
 
+/* ===========================
+   BUTTON
+=========================== */
 
-.register-container button:hover {
+.register-container button{
 
-    background-color: #4f3042;
+    width:100%;
 
-}
-.login-link {
+    margin-top:30px;
 
-    text-align: center;
-    margin-top: 20px;
-    color: #6B445A;
-    font-size: 15px;
+    padding:15px;
 
-}
+    border:none;
 
+    border-radius:12px;
 
-.login-link span {
+    background:#2F80ED;
 
-    color: #6B445A;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 5px;
+    color:white;
 
-}
+    font-size:17px;
 
+    font-weight:600;
 
-.login-link span:hover {
+    cursor:pointer;
 
-    text-decoration: underline;
+    transition:.3s;
 
 }
 
+.register-container button:hover{
 
-/* Page background */
-body {
+    background:#1565D8;
 
-    background-color: #EDCEE1;
+    transform:translateY(-2px);
 
 }
 
+/* ===========================
+   LOGIN LINK
+=========================== */
 
-/* Mobile Responsive */
-@media screen and (max-width: 500px) {
+.login-link{
 
-    .register-container {
+    text-align:center;
 
-        width: 90%;
-        padding: 20px;
+    margin-top:25px;
 
-    }
+    color:#475569;
+
+}
+
+.login-link span{
+
+    color:#2F80ED;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.login-link span:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.register-container{
+
+padding:100px 20px;
+
+}
+
+.register-container form{
+
+padding:30px;
+
+}
+
+.register-container h2{
+
+font-size:30px;
+
+top:30px;
+
+}
 
 }

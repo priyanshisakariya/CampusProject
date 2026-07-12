@@ -1,6 +1,6 @@
-/* ===========================
-   Global
-=========================== */
+/* ==========================
+   HOME PAGE
+========================== */
 
 *{
     margin:0;
@@ -10,132 +10,133 @@
 }
 
 body{
-    background:#EDCEE1;
-    color:#3B172D;
+    overflow-x:hidden;
 }
 
-/* ===========================
-   Hero Section
-=========================== */
+/* Hero Section */
 
 .hero{
+    min-height:100vh;
+
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items:center;
-    min-height:90vh;
-    padding:0 8%;
-    background:#EDCEE1;
-    gap:50px;
+
+    padding:120px 20px 80px;
+
+    background-image:url("./assets/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
+
+/* Center Card */
 
 .hero-left{
-    flex:1;
+
+    width:100%;
+    max-width:1000px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,0.22);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.35);
+
+    border-radius:25px;
+
+    padding:60px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
 }
 
+/* Heading */
+
 .hero-left h1{
-    font-size:52px;
-    color:#3B172D;
+
+    font-size:55px;
+    font-weight:700;
+    color:#0F2342;
+
     line-height:1.2;
+
     margin-bottom:25px;
 }
 
+/* Paragraph */
+
 .hero-left p{
+
     font-size:18px;
-    color:#3B172D;
-    line-height:1.8;
-    margin-bottom:35px;
-    max-width:650px;
+
+    color:#44556C;
+
+    line-height:1.9;
+
+    max-width:700px;
+
+    margin:0 auto 40px;
 }
 
+/* Button */
+
 .hero-left button{
-    padding:15px 35px;
-    background:#3B172D;
-    color:#FFFFFF;
+
+    padding:16px 42px;
+
     border:none;
-    border-radius:8px;
-    font-size:16px;
+
+    border-radius:12px;
+
+    background:#2F80ED;
+
+    color:white;
+
+    font-size:17px;
+
     font-weight:600;
+
     cursor:pointer;
-    transition:0.3s;
+
+    transition:.3s;
 }
 
 .hero-left button:hover{
-    background:#2A1020;
+
+    background:#1565D8;
+
     transform:translateY(-3px);
 }
 
-.hero-right{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+/* Responsive */
 
-.hero-right img{
-    width:100%;
-    max-width:500px;
-}
-
-/* ===========================
-   Responsive
-=========================== */
-
-@media (max-width:992px){
+@media(max-width:768px){
 
 .hero{
-    flex-direction:column-reverse;
-    justify-content:center;
-    text-align:center;
-    padding:60px 8%;
+
+padding:120px 20px 60px;
+
+}
+
+.hero-left{
+
+padding:35px 25px;
+
 }
 
 .hero-left h1{
-    font-size:38px;
+
+font-size:36px;
+
 }
 
 .hero-left p{
-    font-size:17px;
-    max-width:100%;
-}
 
-.hero-left button{
-    width:220px;
-}
-
-.hero-right img{
-    width:80%;
-}
+font-size:16px;
 
 }
-/* ===========================
-   Home page image 
-=========================== */
-.hero-left h1{
-    font-size: 3.4rem;   /* પહેલા 4rem હતું */
-    font-weight: 700;
-    color: #3c1630;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
 
-.hero-left p{
-    font-size: 1.05rem;   
-    line-height: 1.7;
-    color: #4b3044;
-    margin-bottom: 30px;
-}
-
-.hero-right{
-    flex: 1;
-    display: flex;
-    justify-content: flex-end; 
-    align-items: flex-start; 
-}  
-
-.hero-image{
-    width: 100%;
-    max-width: 520px;
-    height: auto;
-    margin-top: -40px;   
-    margin-right: -30px; 
 }

@@ -19,11 +19,29 @@ function Header() {
       </nav>
 
       <div className="auth-buttons">
-        <button className="login-btn" onClick={() => navigate("/student")}>
-            Login
-        </button>
-        <button  className="register-btn"  onClick={() => navigate("/register")}> Register</button>
-      </div>
+
+  <div className="login-dropdown">
+
+    <button className="login-btn">
+      Login ▾
+    </button>
+
+    <div className="dropdown-menu">
+    <Link to="/student-login">🎓 Student Portal</Link>
+    <Link to="/faculty-login">👨‍🏫 Faculty Portal</Link>
+    <Link to="/admin-login">🛡️ Admin Portal</Link>
+</div>
+
+  </div>
+
+  <button
+    className="register-btn"
+    onClick={() => navigate("/register")}
+  >
+    Register
+  </button>
+
+</div>
     </header>
   );
 }
