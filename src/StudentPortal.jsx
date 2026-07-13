@@ -1,160 +1,196 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import { useState } from "react";
 import "./StudentPortal.css";
 import logo from "./assets/logo1.jpeg";
-import { useState } from "react";
 
+import {
+  FaBars,
+  FaHome,
+  FaUser,
+  FaFileAlt,
+  FaCalendarAlt,
+  FaFolderOpen,
+  FaAward,
+  FaBell,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 function StudentPortal() {
-
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-
   return (
-
     <div className="portal">
-
 
       {/* Sidebar */}
 
-      <div className={sidebarOpen ? "sidebar active" : "sidebar"}>
+      <aside className={sidebarOpen ? "sidebar open" : "sidebar"}>
 
+        <div className="sidebar-header">
 
-        <h2>🎓 CampusProject</h2>
+          <img
+            src={logo}
+            alt="Logo"
+            className="sidebar-logo"
+          />
 
+          <h2>CampusProject</h2>
 
-        <Link to="/student-portal">
-          🏠 Dashboard
-        </Link>
+        </div>
 
+        <nav className="sidebar-menu">
 
-        <Link to="/student-portal/profile">
-          👤 My Profile
-        </Link>
+          <NavLink
+            to="/student-portal"
+            end
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+          >
+            <FaHome />
+            <span>Dashboard</span>
+          </NavLink>
 
+          <NavLink
+            to="/student-portal/profile"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+          >
+            <FaUser />
+            <span>My Profile</span>
+          </NavLink>
 
-        <Link to="/student-portal/proposal">
-          📄 Submit Proposal
-        </Link>
+          <NavLink
+            to="/student-portal/proposal"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+          >
+            <FaFileAlt />
+            <span>Submit Proposal</span>
+          </NavLink>
 
+         
+          <NavLink
+  to="/student-portal/weekly-progress"
+  className={({ isActive }) =>
+    isActive ? "active" : ""
+  }
+>
+  <FaCalendarAlt />
+  <span>Weekly Progress</span>
+</NavLink>
 
-        <Link to="/student-portal/progress">
-          📅 Weekly Progress
-        </Link>
+          <NavLink
+            to="/student-portal/report"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+          >
+            <FaFolderOpen />
+            <span>Final Submission</span>
+          </NavLink>
 
+          <NavLink
+            to="/student-portal/marks"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+          >
+            <FaAward />
+            <span>My Marks</span>
+          </NavLink>
 
-        <Link to="/student-portal/report">
-          📁 Final Report
-        </Link>
+          <NavLink
+            to="/student-portal/notification"
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+          >
+            <FaBell />
+            <span>Notifications</span>
+          </NavLink>
 
+        </nav>
 
-        <Link to="/student-portal/marks">
-          🏆 My Marks
-        </Link>
+        <div className="logout-area">
 
+          <NavLink to="/">
 
-        <Link to="/student-portal/notification">
-          🔔 Notifications
-        </Link>
+            <FaSignOutAlt />
 
+            <span>Logout</span>
 
-        <Link to="/">
-          🚪 Logout
-        </Link>
+          </NavLink>
 
+        </div>
 
-      </div>
-
-
-
+      </aside>
 
       {/* Main */}
 
       <div className="main">
 
+        {/* Topbar */}
 
-
-        {/* Top Navbar */}
-
-        <div className="topbar">
-
+        <header className="topbar">
 
           <div className="top-left">
-
 
             <button
               className="menu-btn"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              ☰
+              <FaBars />
             </button>
-
-
 
             <h2 className="portal-title">
               Student Portal
             </h2>
 
-
           </div>
-
-
-
 
           <div className="user-section">
 
+            <div className="notification">
 
-            <span className="bell">
-              🔔
-            </span>
-
-
-
-            <div className="profile">
-
-
-              <img 
-                src={logo} 
-                alt="Profile"
-              />
-
-
-              <span>
-                Priyanshi
-              </span>
-
+              <FaBell />
 
             </div>
 
+            <div className="profile">
+
+              <img
+                src={logo}
+                alt="Profile"
+              />
+
+              <div>
+
+                <h4>Priyanshi Sakariya</h4>
+
+                <p>Student</p>
+
+              </div>
+
+            </div>
 
           </div>
 
+        </header>
 
-        </div>
+        {/* Page */}
 
+        <main className="content">
 
+          <Outlet />
 
-
-
-        {/* Page Content */}
-
-        <div className="content">
-
-
-            <Outlet />
-
-
-        </div>
-
-
+        </main>
 
       </div>
 
-
     </div>
-
   );
-
 }
-
 
 export default StudentPortal;

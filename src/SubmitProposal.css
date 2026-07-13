@@ -1,0 +1,214 @@
+/* ==========================================
+   SUBMIT PROPOSAL PAGE
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+.proposal-container{
+    width:100%;
+    min-height:100vh;
+    background:#f4f8fd;
+    padding:35px;
+}
+
+.proposal-card{
+    max-width:950px;
+    margin:auto;
+    background:#fff;
+    border-radius:15px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.proposal-card h1{
+    text-align:center;
+    color:#1d4ed8;
+    margin-bottom:35px;
+    font-size:32px;
+}
+
+.section-title{
+    color:#2563eb;
+    margin-top:30px;
+    margin-bottom:18px;
+    padding-bottom:8px;
+    border-bottom:2px solid #e5e7eb;
+    font-size:22px;
+}
+
+.proposal-card form{
+    display:flex;
+    flex-direction:column;
+}
+
+.proposal-card label{
+    margin-top:18px;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#374151;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.proposal-card input,
+.proposal-card select,
+.proposal-card textarea{
+
+    width:100%;
+    padding:13px 15px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+    background:white;
+
+}
+
+.proposal-card input:focus,
+.proposal-card select:focus,
+.proposal-card textarea:focus{
+
+    border-color:#2563eb;
+    box-shadow:0 0 8px rgba(37,99,235,.25);
+
+}
+
+.proposal-card textarea{
+    resize:vertical;
+    min-height:140px;
+}
+
+.member-box{
+
+    margin-top:20px;
+    padding:20px;
+    background:#f8fbff;
+    border:1px solid #dbeafe;
+    border-left:5px solid #2563eb;
+    border-radius:12px;
+
+}
+
+.member-box h3{
+
+    color:#1e40af;
+    margin-bottom:18px;
+    font-size:18px;
+
+}
+
+input[readonly]{
+
+    background:#eef4ff;
+    color:#555;
+    cursor:not-allowed;
+
+}
+
+input[type="file"]{
+
+    padding:12px;
+    background:#fff;
+
+}
+
+button{
+
+    margin-top:35px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#1d4ed8;
+    transform:translateY(-2px);
+
+}
+
+button:active{
+
+    transform:scale(.98);
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .proposal-container{
+        padding:15px;
+    }
+
+    .proposal-card{
+        padding:20px;
+    }
+
+    .proposal-card h1{
+        font-size:26px;
+    }
+
+    .section-title{
+        font-size:20px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+}
+.technology-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin-top:15px;
+    margin-bottom:20px;
+
+}
+
+.technology-grid label{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px;
+    background:#f8fbff;
+    border:1px solid #dbeafe;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+.technology-grid label:hover{
+
+    background:#eaf3ff;
+
+}
+
+.technology-grid input[type="checkbox"]{
+
+    width:18px;
+    height:18px;
+    cursor:pointer;
+
+}

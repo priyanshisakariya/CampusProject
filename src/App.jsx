@@ -8,8 +8,9 @@ import StudentRegister from "./StudentRegister";
 import StudentLogin from "./StudentLogin";
 import StudentPortal from "./StudentPortal";
 import Profile from "./Profile";
-
-
+import Dashboard from "./Dashboard";
+import SubmitProposal from "./SubmitProposal";
+import WeeklyProgress from "./WeeklyProgress";
 function App() {
   return (
     <BrowserRouter>
@@ -25,8 +26,14 @@ function App() {
         {/* Student */}
         <Route path="/student-register" element={<StudentRegister />} />
         <Route path="/student-login" element={<StudentLogin />} />
-        <Route path="/student-portal/*" element={<StudentPortal />}>
+         {/* Student Portal */}
+        <Route path="/student-portal" element={<StudentPortal />}>
 
+          {/* Dashboard (Default Page) */}
+          <Route index element={<Dashboard />} />
+
+        <Route path="proposal" element={<SubmitProposal />} />
+        <Route path="weekly-progress" element={<WeeklyProgress />} />
    <Route 
       path="profile" 
       element={<Profile />} 
