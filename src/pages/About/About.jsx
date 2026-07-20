@@ -1,13 +1,13 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import "./About.css";
-
+import background from "../../assets/background.jpg";
 function About() {
   return (
     <>
       <Header />
 
-      <section className="about">
+      <section className="about" style={{ backgroundImage: `url(${background})` }}>
 
         <div className="about-container">
 

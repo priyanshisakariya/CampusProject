@@ -1,14 +1,14 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import "./Services.css";
 import { FaFileUpload, FaUserGraduate, FaChartLine } from "react-icons/fa";
-
+import background from "../../assets/background.jpg";
 function Services() {
   return (
     <>
       <Header />
 
-      <section className="services">
+      <section className="services" style={{ backgroundImage: `url(${background})` }}>
 
         <div className="services-container">
 

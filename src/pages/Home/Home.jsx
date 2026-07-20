@@ -1,8 +1,8 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-
+import background from "../../assets/background.jpg";
 
 
 function Home(){
@@ -15,7 +15,7 @@ return(
 
 <Header />
 
-<section className="hero">
+<section className="hero" style={{ backgroundImage: `url(${background})` }}>
 
   <div className="hero-left">
 

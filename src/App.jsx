@@ -1,48 +1,55 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./Home";
-import About from "./About";
-import Services from "./Services";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import Services from "./pages/Services/Services";
 
-import StudentRegister from "./StudentRegister";
-import StudentLogin from "./StudentLogin";
-import StudentPortal from "./StudentPortal";
-import Profile from "./Profile";
-import Dashboard from "./Dashboard";
-import SubmitProposal from "./SubmitProposal";
-import WeeklyProgress from "./WeeklyProgress";
+import StudentRegister from "./pages/Student/StudentRegister";
+import StudentLogin from "./pages/Student/StudentLogin";
+
+import StudentPortal from "./pages/Portal/StudentPortal";
+import Dashboard from "./pages/Portal/Dashboard";
+import Profile from "./pages/Portal/Profile";
+import SubmitProposal from "./pages/Portal/SubmitProposal";
+import WeeklyProgress from "./pages/Portal/WeeklyProgress";
+
+// Uncomment these after you create them
+// import Report from "./Report";
+// import Marks from "./Marks";
+// import Notification from "./Notification";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        {/* Home */}
+        {/* Public Pages */}
         <Route path="/" element={<Home />} />
-
-        {/* Navigation */}
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
 
-        {/* Student */}
+        {/* Authentication */}
         <Route path="/student-register" element={<StudentRegister />} />
         <Route path="/student-login" element={<StudentLogin />} />
-         {/* Student Portal */}
+        <Route path="/register" element={<StudentRegister />} />
+
+        {/* Student Portal */}
         <Route path="/student-portal" element={<StudentPortal />}>
 
-          {/* Dashboard (Default Page) */}
+          {/* Default Page */}
           <Route index element={<Dashboard />} />
 
-        <Route path="proposal" element={<SubmitProposal />} />
-        <Route path="weekly-progress" element={<WeeklyProgress />} />
-   <Route 
-      path="profile" 
-      element={<Profile />} 
-   />
+          {/* Child Pages */}
+          <Route path="profile" element={<Profile />} />
+          <Route path="proposal" element={<SubmitProposal />} />
+          <Route path="weekly-progress" element={<WeeklyProgress />} />
 
-</Route>
+          {/* Create these pages later */}
+          {/* <Route path="report" element={<Report />} /> */}
+          {/* <Route path="marks" element={<Marks />} /> */}
+          {/* <Route path="notification" element={<Notification />} /> */}
 
-        {/* Register Button */}
-        <Route path="/register" element={<StudentRegister />} />
+        </Route>
 
       </Routes>
     </BrowserRouter>

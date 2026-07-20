@@ -1,7 +1,7 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import logo from "./assets/logo1.jpeg"; // Change path if needed
+import logo from "../../assets/logo1.jpeg";
 function Header() {
   const navigate = useNavigate();
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./StudentRegister.css";
 import { useNavigate } from "react-router-dom";
-
+import background from "../../assets/background.jpg";
 function StudentRegister() {
   const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ function StudentRegister() {
   };
 
   return (
-    <div className="register-container">
+    <div className="register-container" style={{ backgroundImage: `url(${background})` }}>
 
       <h2>Student Registration</h2>
 

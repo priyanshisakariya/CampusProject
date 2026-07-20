@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./StudentLogin.css";
-
+import { useNavigate } from "react-router-dom";
+import background from "../../assets/background.jpg";
 function StudentLogin() {
 
   const navigate = useNavigate();
@@ -49,9 +49,9 @@ function StudentLogin() {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container" style={{ backgroundImage: `url(${background})` }}>
 
-      <div className="login-card">
+      <div className="login-card" >
 
         <h2>Student Login</h2>
 
