@@ -210,76 +210,53 @@
 }
 
 
-/* BUTTONS */
-
+/* Button Container */
 .auth-buttons {
-
     display: flex;
-
-    gap: 18px;
-
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;   /* Increase to 20px or 25px if needed */
 }
 
-
-.login-btn {
-
-    padding: 12px 30px;
-
-    border-radius: 30px;
-
+/* Common Button Style */
+.auth-buttons button {
+    min-width: 120px;
+    height: 48px;
+    padding: 0 28px;
     border: none;
-
-    background: #2F80ED;
-
-    color: white;
-
-    font-size: 15px;
-
+    border-radius: 50px;
+    font-size: 16px;
     font-weight: 600;
-
     cursor: pointer;
-
-    transition: .3s;
-
+    transition: all 0.3s ease;
 }
 
+/* Login Button */
+.login-btn {
+    background: #2F80ED;
+    color: #fff;
+}
 
 .login-btn:hover {
-
     background: #1864D8;
-
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(47, 128, 237, 0.35);
 }
 
-
+/* Register Button */
 .register-btn {
-
-    padding: 15px 20px;
-
-    border-radius: 30px;
-
-    border: none;
-
-    background: white;
-
-    color: #05122B;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: .3s;
-
+    background: #fff;
+    color: #1E293B;
+    border: 2px solid transparent;
 }
-
 
 .register-btn:hover {
-
-    background: #EAF4FF;
-
+    background: #F1F7FF;
+    border-color: #2F80ED;
+    color: #2F80ED;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
-
 
 /* RESPONSIVE */
 
