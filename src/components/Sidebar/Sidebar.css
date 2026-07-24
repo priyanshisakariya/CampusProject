@@ -8,11 +8,11 @@
     width:290px;
     min-width:270px;
     height:100vh;
-    background:#ffffff;
+    background:#173B63;
     display:flex;
     flex-direction:column;
-    box-shadow:3px 0 15px rgba(0,0,0,.08);
-    transition:all .3s ease;
+    box-shadow:3px 0 15px rgba(0,0,0,.15);
+    transition:.3s;
     overflow:hidden;
 }
 
@@ -34,7 +34,7 @@
     align-items:center;
     gap:15px;
     padding:0 20px;
-    border-bottom:1px solid #e6edf7;
+    border-bottom:1px solid rgba(255,255,255,.15);
 }
 
 .sidebar-logo{
@@ -47,7 +47,7 @@
 .sidebar-title{
     font-size:24px;
     font-weight:700;
-    color:#173B63;
+    color:#ffffff;
     white-space:nowrap;
 }
 
@@ -62,33 +62,59 @@
 }
 
 .sidebar-menu a{
+
     display:flex;
     align-items:center;
     gap:15px;
+
     text-decoration:none;
-    color:#173B63;
+
+    color:#ffffff;
+
     padding:14px 18px;
+
     margin-bottom:10px;
+
     border-radius:12px;
+
     font-size:15px;
-    font-weight:600;
-    transition:all .3s ease;
+
+    font-weight:500;
+
+    transition:.3s;
+
 }
 
 .sidebar-menu a svg{
+
     font-size:20px;
+
     min-width:22px;
+
 }
+
+/* Hover */
 
 .sidebar-menu a:hover{
+
     background:#2F80ED;
+
     color:#ffffff;
+
     transform:translateX(5px);
+
 }
 
+/* Active */
+
 .sidebar-menu a.active{
+
     background:#2F80ED;
+
     color:#ffffff;
+
+    font-weight:600;
+
 }
 
 /* ==========================================
@@ -96,25 +122,41 @@
 ========================================== */
 
 .logout-area{
+
     padding:20px 15px;
-    border-top:1px solid #e6edf7;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
 }
 
 .logout-area a{
+
     display:flex;
+
     align-items:center;
+
     gap:15px;
+
     text-decoration:none;
-    color:#d32f2f;
+
+    color:#ffffff;
+
     padding:14px 18px;
+
     border-radius:12px;
-    font-weight:600;
-    transition:all .3s ease;
+
+    font-weight:500;
+
+    transition:.3s;
+
 }
 
 .logout-area a:hover{
-    background:#d32f2f;
+
+    background:#dc2626;
+
     color:#ffffff;
+
 }
 
 /* ==========================================
@@ -122,31 +164,41 @@
 ========================================== */
 
 .sidebar-menu::-webkit-scrollbar{
+
     width:6px;
+
 }
 
 .sidebar-menu::-webkit-scrollbar-thumb{
-    background:#c4d3ea;
+
+    background:rgba(255,255,255,.30);
+
     border-radius:10px;
+
 }
 
 .sidebar-menu::-webkit-scrollbar-track{
-    background:#f5f8fc;
+
+    background:transparent;
+
 }
 
 /* ==========================================
    RESPONSIVE
 ========================================== */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
 .sidebar{
+
     position:fixed;
+
     left:0;
+
     top:0;
+
     z-index:1000;
+
 }
-
-
 
 }

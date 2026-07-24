@@ -72,7 +72,31 @@ hr{
     color:#B9CDE8;
     font-size:15px;
 }
+.contact-info p{
 
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:12px;
+
+    color:#ffffff;
+
+    font-size:15px;
+
+}
+
+.contact-icon{
+
+    color:#2F80ED;
+
+    font-size:18px;
+
+    min-width:20px;
+
+}
 /* Responsive */
 
 @media(max-width:768px){

@@ -1,5 +1,9 @@
 import "./Footer.css";
-
+import {
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 function Footer() {
   return (
     <footer className="footer">
@@ -24,7 +28,7 @@ function Footer() {
 
           <a href="#">Home</a>
           <a href="#">About Us</a>
-          <a href="#">Features</a>
+          <a href="#">Services</a>
         </div>
 
         <div className="footer-section">
@@ -33,15 +37,30 @@ function Footer() {
           <p>Student Portal</p>
           <p>Faculty Portal</p>
           <p>Admin Portal</p>
-          <p>Project Tracking</p>
         </div>
 
         <div className="footer-section">
           <h3>Contact</h3>
 
-          <p>Email: campusproject@gmail.com</p>
-          <p>Phone: +91 98765 43210</p>
-          <p>Rajkot, Gujarat, India</p>
+          <p>
+    <FaEnvelope className="contact-icon" />
+    info@svgu.ac.in
+  </p>
+
+  <p>
+    <FaPhoneAlt className="contact-icon" />
+    079-26926568
+  </p>
+
+  <p>
+    <FaPhoneAlt className="contact-icon" />
+    079-26926429
+  </p>
+
+  <p>
+    <FaMapMarkerAlt className="contact-icon" />
+    Ahmedabad, Gujarat, India
+  </p>
         </div>
 
       </div>

@@ -1,0 +1,317 @@
+/* ===================================
+   FINAL SUBMISSION PAGE
+=================================== */
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background:#f5f8fc;
+}
+
+.submission-container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px;
+}
+
+.page-title{
+    font-size:30px;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:8px;
+}
+
+.page-subtitle{
+    color:#64748b;
+    margin-bottom:30px;
+}
+
+/* =========================
+      CARD
+========================= */
+
+.submission-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    border:1px solid #e5e7eb;
+
+}
+
+/* =========================
+      CARD TITLE
+========================= */
+
+.card-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:22px;
+
+    font-weight:600;
+
+    color:#1f2937;
+
+    margin-bottom:25px;
+
+}
+
+.card-icon{
+
+    color:#2563eb;
+
+    font-size:24px;
+
+}
+
+/* =========================
+      FORM
+========================= */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    color:#374151;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.input-icon{
+
+    color:#2563eb;
+
+}
+
+/* =========================
+      INPUTS
+========================= */
+
+input[type="text"],
+input[type="url"],
+textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 8px rgba(37,99,235,.25);
+
+}
+
+textarea{
+
+    resize:none;
+
+}
+
+/* =========================
+      FILE INPUT
+========================= */
+
+input[type="file"]{
+
+    padding:12px;
+
+    border:2px dashed #93c5fd;
+
+    border-radius:10px;
+
+    background:#eff6ff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+input[type="file"]:hover{
+
+    background:#dbeafe;
+
+}
+
+/* =========================
+      DECLARATION
+========================= */
+
+.declaration-box{
+
+    background:#f9fafb;
+
+    border:1px solid #e5e7eb;
+
+    padding:18px;
+
+    border-radius:10px;
+
+}
+
+.checkbox-label{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    font-size:15px;
+
+    color:#374151;
+
+    line-height:1.6;
+
+}
+
+.checkbox-label input{
+
+    margin-top:4px;
+
+}
+
+/* =========================
+      BUTTONS
+========================= */
+
+.button-group{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+.reset-btn{
+
+    background:#e5e7eb;
+
+    color:#374151;
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+}
+
+.reset-btn:hover{
+
+    background:#d1d5db;
+
+}
+
+.submit-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 24px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* =========================
+      MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.button-group{
+
+    flex-direction:column;
+
+}
+
+.submit-btn,
+.reset-btn{
+
+    width:100%;
+    justify-content:center;
+
+}
+
+}

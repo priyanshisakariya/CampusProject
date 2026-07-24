@@ -1,20 +1,28 @@
 import "./Topbar.css";
 import logo from "../../assets/logo1.jpeg";
-import { FaBell } from "react-icons/fa";
 
-function Topbar() {
+import { FaBell, FaBars } from "react-icons/fa";
+
+function Topbar({ sidebarOpen, setSidebarOpen }) {
+
   return (
     <header className="topbar">
 
       {/* Left */}
-      <div className="project-name">
-        
-      </div>
+      <div className="top-left">
 
-      {/* Center */}
-      <h2 className="portal-title">
-        Student Portal
-      </h2>
+        <button
+          className="menu-btn"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          <FaBars />
+        </button>
+
+        <h2 className="portal-title">
+          Student Portal
+        </h2>
+
+      </div>
 
       {/* Right */}
       <div className="user-section">

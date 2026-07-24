@@ -1,13 +1,12 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "./Home.css";
-import { useNavigate } from "react-router-dom";
 import background from "../../assets/background.jpg";
 
 
 function Home(){
 
-const navigate=useNavigate();
+
 
 return(
 
@@ -32,12 +31,7 @@ return(
       with important notifications.
     </p>
 
-    <button
-      className="login-btn"
-      onClick={() => navigate("/student")}
-    >
-      Get Started
-    </button>
+    
 
   </div>
 

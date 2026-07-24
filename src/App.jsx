@@ -12,11 +12,12 @@ import Dashboard from "./pages/Portal/Dashboard";
 import Profile from "./pages/Portal/Profile";
 import SubmitProposal from "./pages/Portal/SubmitProposal";
 import WeeklyProgress from "./pages/Portal/WeeklyProgress";
-
-// Uncomment these after you create them
-// import Report from "./Report";
-// import Marks from "./Marks";
-// import Notification from "./Notification";
+import FinalSubmission from "./pages/Portal/FinalSubmission";
+import Marks from "./pages/Portal/Marks";
+import Notifications from "./pages/Portal/Notifications";
+// Future Pages
+// import Marks from "./pages/Portal/Marks";
+// import Notifications from "./pages/Portal/Notifications";
 
 function App() {
   return (
@@ -36,18 +37,19 @@ function App() {
         {/* Student Portal */}
         <Route path="/student-portal" element={<StudentPortal />}>
 
-          {/* Default Page */}
+          {/* Default Dashboard */}
           <Route index element={<Dashboard />} />
 
-          {/* Child Pages */}
+          {/* Student Pages */}
           <Route path="profile" element={<Profile />} />
           <Route path="proposal" element={<SubmitProposal />} />
           <Route path="weekly-progress" element={<WeeklyProgress />} />
-
-          {/* Create these pages later */}
-          {/* <Route path="report" element={<Report />} /> */}
+          <Route path="final-submission" element={<FinalSubmission />} />
+          <Route path="marks" element={<Marks />} />
+          <Route path="notification" element={<Notifications />} />
+          {/* Future Pages */}
           {/* <Route path="marks" element={<Marks />} /> */}
-          {/* <Route path="notification" element={<Notification />} /> */}
+          {/* <Route path="notifications" element={<Notifications />} /> */}
 
         </Route>
 

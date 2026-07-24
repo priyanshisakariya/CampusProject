@@ -13,9 +13,10 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
-function Sidebar() {
+function Sidebar({ sidebarOpen }) {
   return (
-   <aside className="sidebar">
+    <aside className={`sidebar ${sidebarOpen ? "" : "close"}`}>
+
       {/* Logo */}
       <div className="sidebar-header">
         <img
@@ -74,7 +75,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/student-portal/report"
+          to="/student-portal/final-submission"
           className={({ isActive }) =>
             isActive ? "active" : ""
           }

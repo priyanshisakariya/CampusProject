@@ -2,6 +2,11 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo1.jpeg";
+import {
+  FaUserGraduate,
+  FaChalkboardTeacher,
+  FaUserShield,
+} from "react-icons/fa";
 function Header() {
   const navigate = useNavigate();
   return (
@@ -27,11 +32,23 @@ function Header() {
     </button>
 
     <div className="dropdown-menu">
-    <Link to="/student-login">🎓 Student Portal</Link>
-    <Link to="/faculty-login">👨‍🏫 Faculty Portal</Link>
-    <Link to="/admin-login">🛡️ Admin Portal</Link>
-</div>
 
+  <Link to="/student-login">
+    <FaUserGraduate className="dropdown-icon" />
+    Student Portal
+  </Link>
+
+  <Link to="/faculty-login">
+    <FaChalkboardTeacher className="dropdown-icon" />
+    Faculty Portal
+  </Link>
+
+  <Link to="/admin-login">
+    <FaUserShield className="dropdown-icon" />
+    Admin Portal
+  </Link>
+
+</div>
   </div>
 
   <button
