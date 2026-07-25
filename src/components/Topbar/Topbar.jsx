@@ -4,13 +4,13 @@ import logo from "../../assets/logo1.jpeg";
 import { FaBell, FaBars } from "react-icons/fa";
 
 function Topbar({ sidebarOpen, setSidebarOpen }) {
-
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <header className="topbar">
 
+      
       {/* Left */}
       <div className="top-left">
-
         <button
           className="menu-btn"
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -18,36 +18,24 @@ function Topbar({ sidebarOpen, setSidebarOpen }) {
           <FaBars />
         </button>
 
-        <h2 className="portal-title">
-          Student Portal
-        </h2>
-
+        <h2 className="portal-title">Student Portal</h2>
       </div>
 
       {/* Right */}
       <div className="user-section">
-
         <div className="notification">
           <FaBell />
         </div>
 
         <div className="profile">
-
-          <img
-            src={logo}
-            alt="Profile"
-            className="profile-img"
-          />
-
-          <div className="profile-info">
-            <h4>Priyanshi Sakariya</h4>
-            <p>Student</p>
-          </div>
-
+          <img src={logo} alt="Profile" className="profile-img" />
         </div>
-
+        <div className="profile-info">
+        <h4>{user?.fullName}</h4>
+        <p>Student</p>
       </div>
 
+      </div>
     </header>
   );
 }

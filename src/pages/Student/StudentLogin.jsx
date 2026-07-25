@@ -33,7 +33,11 @@ function StudentLogin() {
 
       if (response.ok) {
         const data = await response.json();
+
         console.log(data);
+
+        // Save logged-in user
+        localStorage.setItem("user", JSON.stringify(data));
 
         alert("Login Successful!");
         navigate("/student-portal");
@@ -47,9 +51,8 @@ function StudentLogin() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href =
-        "http://localhost:8081/oauth2/authorization/google";
-};
+    window.location.href = "http://localhost:8081/oauth2/authorization/google";
+  };
 
   return (
     <div
@@ -57,15 +60,11 @@ function StudentLogin() {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="login-card">
-
         <h2>Welcome Back!</h2>
 
-        <p className="subtitle">
-          Login to access your Project Tracking Portal
-        </p>
+        <p className="subtitle">Login to access your Project Tracking Portal</p>
 
         <form onSubmit={handleSubmit}>
-
           <label>Full Name</label>
 
           <input
@@ -94,15 +93,12 @@ function StudentLogin() {
               Remember Me
             </label>
 
-            <span className="forgot-password">
-              Forgot Password?
-            </span>
+            <span className="forgot-password">Forgot Password?</span>
           </div>
 
           <button type="submit" className="login-btn">
             Login
           </button>
-
         </form>
 
         {/* Divider */}
@@ -113,21 +109,15 @@ function StudentLogin() {
 
         {/* Google Button */}
 
-        <button
-          className="google-btn"
-          onClick={handleGoogleLogin}
-        >
+        <button className="google-btn" onClick={handleGoogleLogin}>
           <FcGoogle size={22} />
           Continue with Google
         </button>
 
         <p className="register-link">
           Don't have an account?
-          <span onClick={() => navigate("/register")}>
-            {" "}Register
-          </span>
+          <span onClick={() => navigate("/register")}> Register</span>
         </p>
-
       </div>
     </div>
   );

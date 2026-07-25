@@ -1,10 +1,11 @@
 import "./Dashboard.css";
 
 function Dashboard() {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="dashboard">
 
-      <h1>Welcome, Student 👋</h1>
+      <h1>Welcome, {user?.fullName} </h1>
       <p className="dashboard-text">
         Manage your academic project efficiently through the CampusProject
         Student Portal.
