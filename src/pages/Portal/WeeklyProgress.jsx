@@ -37,7 +37,6 @@ function WeeklyProgress() {
       status: "",
       percentage: "",
       challenges: "",
-      nextPlan: "",
       file: null,
     });
   };
@@ -155,15 +154,7 @@ function WeeklyProgress() {
             placeholder="Mention any issues..."
           />
 
-          <label>Plan for Next Week</label>
-
-          <textarea
-            name="nextPlan"
-            value={form.nextPlan}
-            onChange={handleChange}
-            placeholder="Upcoming tasks..."
-            required
-          />
+      
 
           <label>Upload Screenshot / Document</label>
 

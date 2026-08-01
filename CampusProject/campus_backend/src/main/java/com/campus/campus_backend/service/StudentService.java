@@ -34,20 +34,43 @@ public class StudentService {
 
         return null;
     }
-    //edit profile
-    public Student updateStudent(Long id, Student updatedStudent) {
+    public Student updateStudent(Integer id, Student updatedStudent) {
 
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
 
-        if (student != null) {
+        // Student table
+        student.setFullName(updatedStudent.getFullName());
+        student.setEmail(updatedStudent.getEmail());
+        student.setMobileNo(updatedStudent.getMobileNo());
+        student.setEnrollmentNo(updatedStudent.getEnrollmentNo());
+        student.setDepartment(updatedStudent.getDepartment());
+        student.setSem(updatedStudent.getSem());
 
-            student.setFullName(updatedStudent.getFullName());
-            student.setEmail(updatedStudent.getEmail());
-            student.setMobileNo(updatedStudent.getMobileNo());
+        // StudentProfile table
+        if (updatedStudent.getStudentProfile() != null) {
 
-            return studentRepository.save(student);
+            if (student.getStudentProfile() == null) {
+                student.setStudentProfile(updatedStudent.getStudentProfile());
+                updatedStudent.getStudentProfile().setStudent(student);
+            } else {
+                student.getStudentProfile().setAddress(updatedStudent.getStudentProfile().getAddress());
+                student.getStudentProfile().setDateOfBirth(updatedStudent.getStudentProfile().getDateOfBirth());
+                student.getStudentProfile().setSkills(updatedStudent.getStudentProfile().getSkills());
+                student.getStudentProfile().setLinkedInUrl(updatedStudent.getStudentProfile().getLinkedInUrl());
+            }
         }
 
-        return null;
+        return studentRepository.save(student);
     }
+
+    //submit proprsal
+    public Student getStudentById(Integer id){
+
+        return studentRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Student not found"));
+
+    }
+
 }

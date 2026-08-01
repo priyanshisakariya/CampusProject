@@ -17,6 +17,7 @@
    PROFILE CONTAINER
 ========================================= */
 
+
 .profile-container{
 
     min-height:100vh;
@@ -25,9 +26,10 @@
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
 
-    padding:35px;
+    padding:50px 40px;
+
 
     background:
     radial-gradient(circle at top left,
@@ -48,6 +50,7 @@
 
 
 
+
 /* =========================================
    PROFILE CARD
 ========================================= */
@@ -55,22 +58,30 @@
 
 .profile-card{
 
-    width:720px;
+    width:950px;
+
+    max-width:100%;
+
 
     background:rgba(255,255,255,.65);
 
     backdrop-filter:blur(18px);
 
+
     border-radius:25px;
+
 
     padding:40px;
 
+
     border:1px solid rgba(255,255,255,.7);
+
 
     box-shadow:
     0 15px 35px rgba(0,0,0,.08);
 
 }
+
 
 
 
@@ -83,7 +94,7 @@
 
     text-align:center;
 
-    padding-bottom:30px;
+    padding-bottom:35px;
 
     border-bottom:1px solid rgba(0,0,0,.08);
 
@@ -97,7 +108,9 @@
 
     height:120px;
 
+
     margin:auto;
+
 
     border-radius:50%;
 
@@ -155,39 +168,42 @@
 
 
 /* =========================================
-   DETAILS
+   DETAILS GRID
 ========================================= */
 
 
 .profile-details{
 
+    margin-top:35px;
 
-    margin-top:30px;
 
     display:grid;
 
-    grid-template-columns:repeat(2,1fr);
 
-    gap:20px;
+    grid-template-columns:
+    repeat(2,minmax(300px,1fr));
 
+
+    gap:25px;
 
 }
 
 
 
 
+/* =========================================
+   INNER DETAIL / PROJECT BOX
+========================================= */
+
+
 .detail-box{
 
+    min-height:110px;
 
-    padding:20px;
-
-
-    border-radius:16px;
-
+    border-radius:18px;
 
     background:
     rgba(255,255,255,.75);
-
 
     border:1px solid rgba(255,255,255,.8);
 
@@ -199,20 +215,33 @@
     transition:.3s;
 
 
+    /* Better text positioning */
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+
+    padding:22px 25px;
+
+
+    text-align:left;
+
 }
 
 
 
 .detail-box:hover{
 
+
     transform:translateY(-5px);
+
 
     box-shadow:
     0 12px 25px rgba(47,128,237,.15);
 
 }
-
-
 
 .detail-box h4{
 
@@ -220,10 +249,11 @@
 
     font-size:15px;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
+
+    font-weight:600;
 
 }
-
 
 
 .detail-box p{
@@ -232,14 +262,15 @@
 
     font-size:16px;
 
-    font-weight:600;
+    font-weight:500;
+
+    line-height:1.6;
 
 }
 
 
-
 /* =========================================
-   BUTTON
+   EDIT BUTTON
 ========================================= */
 
 
@@ -261,6 +292,7 @@
     border-radius:14px;
 
 
+
     background:#2F80ED;
 
 
@@ -278,7 +310,6 @@
 
     transition:.3s;
 
-
 }
 
 
@@ -291,8 +322,8 @@
 
     transform:translateY(-3px);
 
-
 }
+
 
 
 
@@ -304,20 +335,30 @@
 @media(max-width:768px){
 
 
+    .profile-container{
+
+        padding:25px 15px;
+
+    }
+
+
+
     .profile-card{
 
-        width:100%;
 
         padding:25px;
 
     }
 
 
+
     .profile-details{
+
 
         grid-template-columns:1fr;
 
     }
+
 
 
     .profile-header h2{

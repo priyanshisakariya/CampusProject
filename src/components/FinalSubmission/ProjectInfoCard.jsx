@@ -33,17 +33,9 @@ function ProjectInfoCard() {
         />
       </div>
 
-      <div className="form-group">
-        <label>Project Abstract</label>
-
-        <textarea
-          rows="5"
-          placeholder="Write project summary..."
-        ></textarea>
+    
 
       </div>
-
-    </div>
 
   );
 }

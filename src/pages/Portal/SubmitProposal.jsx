@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./SubmitProposal.css";
 
 function SubmitProposal() {
-
   const [formData, setFormData] = useState({
-    studentName: "Priyanshi Sakariya",
-    enrollment: "23MCA001",
+    studentName: "",
+    enrollment: "",
 
     projectTitle: "",
     projectDomain: "",
     guideName: "",
 
     technologyStack: [],
-     otherTechnology: "",
+    otherTechnology: "",
 
     member2Name: "",
     member2Enrollment: "",
@@ -23,6 +22,54 @@ function SubmitProposal() {
     description: "",
     proposal: null,
   });
+   // 1. GET REGISTERED STUDENT DATA
+  useEffect(() => {
+
+
+    fetch("http://localhost:8081/student/1")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+
+        setFormData(prev => ({
+
+            ...prev,
+
+            studentId: data.id,
+
+            studentName: data.fullName,
+
+            enrollment: data.enrollment
+
+        }));
+
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+    });
+
+
+  }, []);
+
+  const submitProposal = async (proposalData) => {
+    const response = await fetch("http://localhost:8081/proposal/submit", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(proposalData),
+    });
+
+    return response.json();
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,84 +87,86 @@ function SubmitProposal() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    const proposalData = {
+     studentId: formData.studentId,
+
+      projectTitle: formData.projectTitle,
+
+      projectDomain: formData.projectDomain,
+
+      guideName: formData.guideName,
+
+      technologyStack: formData.technologyStack.join(","),
+
+      otherTechnology: formData.otherTechnology,
+
+      member2Name: formData.member2Name,
+
+      member2Enrollment: formData.member2Enrollment,
+
+      member3Name: formData.member3Name,
+
+      member3Enrollment: formData.member3Enrollment,
+
+      projectDescription: formData.description,
+
+      proposalFile: formData.proposal ? formData.proposal.name : "",
+    };
+
+    const result = await submitProposal(proposalData);
+
+    console.log(result);
 
     alert("Project Proposal Submitted Successfully!");
   };
   const handleTechnologyChange = (e) => {
+    const { value, checked } = e.target;
 
-  const { value, checked } = e.target;
-
-  if (checked) {
-
-    setFormData({
-      ...formData,
-      technologyStack: [...formData.technologyStack, value],
-    });
-
-  } else {
-
-    setFormData({
-      ...formData,
-      technologyStack: formData.technologyStack.filter(
-        (tech) => tech !== value
-      ),
-    });
-
-  }
-};
+    if (checked) {
+      setFormData({
+        ...formData,
+        technologyStack: [...formData.technologyStack, value],
+      });
+    } else {
+      setFormData({
+        ...formData,
+        technologyStack: formData.technologyStack.filter(
+          (tech) => tech !== value,
+        ),
+      });
+    }
+  };
 
   return (
     <div className="proposal-container">
-
       <div className="proposal-card">
-
         <h1>📄 Submit Project Proposal</h1>
 
         <form onSubmit={handleSubmit}>
-
           {/* Student Information */}
 
-          <h2 className="section-title">
-            Student Information
-          </h2>
+          <h2 className="section-title">Student Information</h2>
 
           <div className="grid">
-
             <div>
-
               <label>Student Name</label>
 
-              <input
-                type="text"
-                value={formData.studentName}
-                readOnly
-              />
-
+              <input type="text" value={formData.studentName} readOnly />
             </div>
 
             <div>
-
               <label>Enrollment Number</label>
 
-              <input
-                type="text"
-                value={formData.enrollment}
-                readOnly
-              />
-
+              <input type="text" value={formData.enrollment} readOnly />
             </div>
-
           </div>
 
           {/* Project Information */}
 
-          <h2 className="section-title">
-            Project Information
-          </h2>
+          <h2 className="section-title">Project Information</h2>
 
           <label>Project Title</label>
 
@@ -159,157 +208,137 @@ function SubmitProposal() {
             onChange={handleChange}
             required
           />
-          <h2 className="section-title">
-  Technology Stack
-</h2>
+          <h2 className="section-title">Technology Stack</h2>
 
-<div className="technology-grid">
+          <div className="technology-grid">
+            <label>
+              <input
+                type="checkbox"
+                value="Java"
+                onChange={handleTechnologyChange}
+              />
+              Java
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="Java"
-      onChange={handleTechnologyChange}
-    />
-    Java
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Spring Boot"
+                onChange={handleTechnologyChange}
+              />
+              Spring Boot
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="Spring Boot"
-      onChange={handleTechnologyChange}
-    />
-    Spring Boot
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="React.js"
+                onChange={handleTechnologyChange}
+              />
+              React.js
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="React.js"
-      onChange={handleTechnologyChange}
-    />
-    React.js
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="HTML"
+                onChange={handleTechnologyChange}
+              />
+              HTML
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="HTML"
-      onChange={handleTechnologyChange}
-    />
-    HTML
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="CSS"
+                onChange={handleTechnologyChange}
+              />
+              CSS
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="CSS"
-      onChange={handleTechnologyChange}
-    />
-    CSS
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="JavaScript"
+                onChange={handleTechnologyChange}
+              />
+              JavaScript
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="JavaScript"
-      onChange={handleTechnologyChange}
-    />
-    JavaScript
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="MySQL"
+                onChange={handleTechnologyChange}
+              />
+              MySQL
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="MySQL"
-      onChange={handleTechnologyChange}
-    />
-    MySQL
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Python"
+                onChange={handleTechnologyChange}
+              />
+              Python
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="Python"
-      onChange={handleTechnologyChange}
-    />
-    Python
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="AWS"
+                onChange={handleTechnologyChange}
+              />
+              AWS
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="AWS"
-      onChange={handleTechnologyChange}
-    />
-    AWS
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Firebase"
+                onChange={handleTechnologyChange}
+              />
+              Firebase
+            </label>
 
-  <label>
-    <input
-      type="checkbox"
-      value="Firebase"
-      onChange={handleTechnologyChange}
-    />
-    Firebase
-  </label>
+            <label>
+              <input
+                type="checkbox"
+                value="MongoDB"
+                onChange={handleTechnologyChange}
+              />
+              MongoDB
+            </label>
+          </div>
 
-  <label>
-    <input
-      type="checkbox"
-      value="MongoDB"
-      onChange={handleTechnologyChange}
-    />
-    MongoDB
-  </label>
+          <label>Other Technology (Optional)</label>
 
-</div>
-
-<label>Other Technology (Optional)</label>
-
-<input
-  type="text"
-  name="otherTechnology"
-  placeholder="Enter Other Technology"
-  value={formData.otherTechnology}
-  onChange={handleChange}
-/>
+          <input
+            type="text"
+            name="otherTechnology"
+            placeholder="Enter Other Technology"
+            value={formData.otherTechnology}
+            onChange={handleChange}
+          />
 
           {/* Team Members */}
 
-          <h2 className="section-title">
-            Team Members
-          </h2>
+          <h2 className="section-title">Team Members</h2>
 
           <div className="member-box">
-
             <h3>👑 Team Leader</h3>
 
             <div className="grid">
+              <input type="text" value={formData.studentName} readOnly />
 
-              <input
-                type="text"
-                value={formData.studentName}
-                readOnly
-              />
-
-              <input
-                type="text"
-                value={formData.enrollment}
-                readOnly
-              />
-
+              <input type="text" value={formData.enrollment} readOnly />
             </div>
-
           </div>
 
           <div className="member-box">
-
             <h3>Member 2</h3>
 
             <div className="grid">
-
               <input
                 type="text"
                 name="member2Name"
@@ -325,17 +354,13 @@ function SubmitProposal() {
                 value={formData.member2Enrollment}
                 onChange={handleChange}
               />
-
             </div>
-
           </div>
 
           <div className="member-box">
-
             <h3>Member 3</h3>
 
             <div className="grid">
-
               <input
                 type="text"
                 name="member3Name"
@@ -351,9 +376,7 @@ function SubmitProposal() {
                 value={formData.member3Enrollment}
                 onChange={handleChange}
               />
-
             </div>
-
           </div>
 
           {/* Description */}
@@ -363,7 +386,6 @@ function SubmitProposal() {
           <textarea
             rows="6"
             name="description"
-            placeholder="Write your project description..."
             value={formData.description}
             onChange={handleChange}
             required
@@ -373,21 +395,11 @@ function SubmitProposal() {
 
           <label>Upload Proposal (PDF)</label>
 
-          <input
-            type="file"
-            accept=".pdf"
-            onChange={handleFile}
-            required
-          />
+          <input type="file" accept=".pdf" onChange={handleFile} required />
 
-          <button type="submit">
-            Submit Proposal
-          </button>
-
+          <button type="submit">Submit Proposal</button>
         </form>
-
       </div>
-
     </div>
   );
 }

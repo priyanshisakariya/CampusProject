@@ -11,11 +11,9 @@ public class StudentController {
 
     @Autowired
     private StudentService service;
+    @Autowired
+    private StudentService studentService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "API Working";
-    }
 
     // Registration API
     @PostMapping("/register")
@@ -35,11 +33,20 @@ public class StudentController {
                 student.getPassword()
         );
     }
-    //edit profile api
+
+    //edit profile
     @PutMapping("/update/{id}")
-    public Student updateStudent(@PathVariable Long id,
+    public Student updateStudent(@PathVariable Integer id,
                                  @RequestBody Student student) {
 
         return service.updateStudent(id, student);
+    }
+
+    //for submit proporsal
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable Integer id){
+
+        return studentService.getStudentById(id);
+
     }
 }

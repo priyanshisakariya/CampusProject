@@ -1,32 +1,41 @@
 package com.campus.campus_backend.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
-@Table(name = "students")
+@Table(name = "student_register")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Integer id;
 
     private String fullName;
+
+    @Column(unique = true,nullable = false)
     private String email;
     private String password;
+
+    @Column(unique = true)
     private String enrollmentNo;
     private String department;
     private String mobileNo;
     private String sem;
 
+    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+    private StudentProfile studentProfile;
+
+
     // Default Constructor
     public Student() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -84,5 +93,13 @@ public class Student {
 
     public void setSem(String sem) {
         this.sem = sem;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 }
