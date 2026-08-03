@@ -9,8 +9,9 @@ public class SubmitProposal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer proposalId;
 
-    @Column(nullable = false)
-    private Integer studentId;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     @Column(length = 200, nullable = false)
     private String projectTitle;
@@ -56,12 +57,12 @@ public class SubmitProposal {
         this.proposalId = proposalId;
     }
 
-    public Integer getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public String getProjectTitle() {

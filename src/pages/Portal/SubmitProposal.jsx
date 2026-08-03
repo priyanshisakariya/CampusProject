@@ -1,8 +1,10 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./SubmitProposal.css";
 
 function SubmitProposal() {
   const [formData, setFormData] = useState({
+    studentId: "",
+
     studentName: "",
     enrollment: "",
 
@@ -22,39 +24,17 @@ function SubmitProposal() {
     description: "",
     proposal: null,
   });
-   // 1. GET REGISTERED STUDENT DATA
   useEffect(() => {
+    const student = JSON.parse(localStorage.getItem("student"));
 
-
-    fetch("http://localhost:8081/student/1")
-
-    .then(response => response.json())
-
-    .then(data => {
-
-
-        setFormData(prev => ({
-
-            ...prev,
-
-            studentId: data.id,
-
-            studentName: data.fullName,
-
-            enrollment: data.enrollment
-
-        }));
-
-
-    })
-
-    .catch(error => {
-
-        console.log(error);
-
-    });
-
-
+    if (student) {
+      setFormData((prev) => ({
+        ...prev,
+        studentId: student.id,
+        studentName: student.fullName,
+        enrollment: student.enrollmentNo,
+      }));
+    }
   }, []);
 
   const submitProposal = async (proposalData) => {
@@ -88,40 +68,57 @@ function SubmitProposal() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const proposalData = {
-     studentId: formData.studentId,
-
-      projectTitle: formData.projectTitle,
-
-      projectDomain: formData.projectDomain,
-
-      guideName: formData.guideName,
-
-      technologyStack: formData.technologyStack.join(","),
-
-      otherTechnology: formData.otherTechnology,
-
-      member2Name: formData.member2Name,
-
-      member2Enrollment: formData.member2Enrollment,
-
-      member3Name: formData.member3Name,
-
-      member3Enrollment: formData.member3Enrollment,
-
-      projectDescription: formData.description,
-
-      proposalFile: formData.proposal ? formData.proposal.name : "",
-    };
-
-    const result = await submitProposal(proposalData);
-
-    console.log(result);
-
-    alert("Project Proposal Submitted Successfully!");
+  const proposalData = {
+    student: {
+        id: formData.studentId
+    },
+    projectTitle: formData.projectTitle,
+    projectDomain: formData.projectDomain,
+    guideName: formData.guideName,
+    technologyStack: formData.technologyStack.join(","),
+    otherTechnology: formData.otherTechnology,
+    member2Name: formData.member2Name,
+    member2Enrollment: formData.member2Enrollment,
+    member3Name: formData.member3Name,
+    member3Enrollment: formData.member3Enrollment,
+    projectDescription: formData.description,
+    proposalFile: formData.proposal ? formData.proposal.name : "",
   };
+
+  const result = await submitProposal(proposalData);
+
+  console.log(result);
+
+  alert("Project Proposal Submitted Successfully!");
+
+  const student = JSON.parse(localStorage.getItem("student"));
+
+  setFormData({
+    studentId: student?.id || "",
+    studentName: student?.fullName || "",
+    enrollment: student?.enrollmentNo || "",
+
+    projectTitle: "",
+    projectDomain: "",
+    guideName: "",
+
+    technologyStack: [],
+    otherTechnology: "",
+
+    member2Name: "",
+    member2Enrollment: "",
+
+    member3Name: "",
+    member3Enrollment: "",
+
+    description: "",
+    proposal: null,
+  });
+
+  e.target.reset();
+};
   const handleTechnologyChange = (e) => {
     const { value, checked } = e.target;
 

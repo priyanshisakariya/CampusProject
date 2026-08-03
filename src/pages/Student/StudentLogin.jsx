@@ -37,7 +37,7 @@ function StudentLogin() {
         console.log(data);
 
         // Save logged-in user
-        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("student", JSON.stringify(data));
 
         alert("Login Successful!");
         navigate("/student-portal");

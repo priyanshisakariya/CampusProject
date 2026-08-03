@@ -2,19 +2,19 @@ import { useState } from "react";
 import "./Profile.css";
 
 function Profile() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [student, setStudent] = useState(JSON.parse(localStorage.getItem("student")));
 
   const [isEditing, setIsEditing] = useState(false);
 
   const [editData, setEditData] = useState({
-    fullName: user?.fullName || "",
-    email: user?.email || "",
-    mobileNo: user?.mobileNo || "",
+    fullName: student?.fullName || "",
+    email: student?.email || "",
+    mobileNo: student?.mobileNo || "",
 
-    address: user?.studentProfile?.address || "",
-    dateOfBirth: user?.studentProfile?.dateOfBirth || "",
-    skills: user?.studentProfile?.skills || "",
-    linkedInUrl: user?.studentProfile?.linkedInUrl || "",
+    address: student?.studentProfile?.address || "",
+    dateOfBirth: student?.studentProfile?.dateOfBirth || "",
+    skills: student?.studentProfile?.skills || "",
+    linkedInUrl: student?.studentProfile?.linkedInUrl || "",
   });
 
   const handleChange = (e) => {
@@ -26,14 +26,14 @@ function Profile() {
 
   const handleCancel = () => {
     setEditData({
-      fullName: user?.fullName || "",
-      email: user?.email || "",
-      mobileNo: user?.mobileNo || "",
+      fullName: student?.fullName || "",
+      email: student?.email || "",
+      mobileNo: student?.mobileNo || "",
 
-      address: user?.studentProfile?.address || "",
-      dateOfBirth: user?.studentProfile?.dateOfBirth || "",
-      skills: user?.studentProfile?.skills || "",
-      linkedInUrl: user?.studentProfile?.linkedInUrl || "",
+      address: student?.studentProfile?.address || "",
+      dateOfBirth: student?.studentProfile?.dateOfBirth || "",
+      skills: student?.studentProfile?.skills || "",
+      linkedInUrl: student?.studentProfile?.linkedInUrl || "",
     });
 
     setIsEditing(false);
@@ -46,10 +46,10 @@ function Profile() {
         email: editData.email,
         mobileNo: editData.mobileNo,
 
-        enrollmentNo: user.enrollmentNo,
-        department: user.department,
-        sem: user.sem,
-        password: user.password,
+        enrollmentNo: student.enrollmentNo,
+        department: student.department,
+        sem: student.sem,
+        password: student.password,
 
         studentProfile: {
           address: editData.address,
@@ -60,7 +60,7 @@ function Profile() {
       };
 
       const response = await fetch(
-        `http://localhost:8081/student/update/${user.id}`,
+        `http://localhost:8081/student/update/${student.id}`,
         {
           method: "PUT",
 
@@ -75,9 +75,9 @@ function Profile() {
       if (response.ok) {
         const updatedUser = await response.json();
 
-        localStorage.setItem("user", JSON.stringify(updatedUser));
+        localStorage.setItem("student", JSON.stringify(updatedUser));
 
-        setUser(updatedUser);
+        setStudent(updatedUser);
 
         alert("Profile Updated Successfully!");
 
@@ -97,7 +97,7 @@ function Profile() {
       <div className="profile-card">
         <div className="profile-header">
           <div className="profile-image">
-            <span>{user?.fullName?.charAt(0)}</span>
+            <span>{student?.fullName?.charAt(0)}</span>
           </div>
 
           {isEditing ? (
@@ -105,11 +105,11 @@ function Profile() {
               className="edit-input"
               type="text"
               name="fullName"
-              value={editData.fullName}
+              value={editData.fullName || ""}
               onChange={handleChange}
             />
           ) : (
-            <h2>{user?.fullName}</h2>
+            <h2>{student?.fullName}</h2>
           )}
 
           <p>Master of Computer Applications</p>
@@ -124,11 +124,11 @@ function Profile() {
                 className="edit-input"
                 type="email"
                 name="email"
-                value={editData.email}
+                value={editData.email || ""}
                 onChange={handleChange}
               />
             ) : (
-              <p>{user?.email}</p>
+              <p>{student?.email}</p>
             )}
           </div>
 
@@ -140,30 +140,30 @@ function Profile() {
                 className="edit-input"
                 type="text"
                 name="mobileNo"
-                value={editData.mobileNo}
+                value={editData.mobileNo || ""}
                 onChange={handleChange}
               />
             ) : (
-              <p>{user?.mobileNo}</p>
+              <p>{student?.mobileNo}</p>
             )}
           </div>
 
           <div className="detail-box">
             <h4>Enrollment No</h4>
 
-            <p>{user?.enrollmentNo}</p>
+            <p>{student?.enrollmentNo}</p>
           </div>
 
           <div className="detail-box">
             <h4>Department</h4>
 
-            <p>{user?.department}</p>
+            <p>{student?.department}</p>
           </div>
 
           <div className="detail-box">
             <h4>Semester</h4>
 
-            <p>{user?.sem}</p>
+            <p>{student?.sem}</p>
           </div>
 
           <div className="detail-box">
@@ -173,12 +173,12 @@ function Profile() {
               <textarea
                 className="edit-input"
                 name="address"
-                value={editData.address}
+                value={editData.address || ""}
                 onChange={handleChange}
                 rows="3"
               />
             ) : (
-              <p>{user?.studentProfile?.address || "Not Added"}</p>
+              <p>{student?.studentProfile?.address || "Not Added"}</p>
             )}
           </div>
 
@@ -190,11 +190,11 @@ function Profile() {
                 className="edit-input"
                 type="date"
                 name="dateOfBirth"
-                value={editData.dateOfBirth}
+                value={editData.dateOfBirth || ""}
                 onChange={handleChange}
               />
             ) : (
-              <p>{user?.studentProfile?.dateOfBirth || "Not Added"}</p>
+              <p>{student?.studentProfile?.dateOfBirth || "Not Added"}</p>
             )}
           </div>
 
@@ -207,11 +207,11 @@ function Profile() {
                 type="text"
                 name="skills"
                 placeholder="Java, React, Spring Boot"
-                value={editData.skills}
+                value={editData.skills || ""}
                 onChange={handleChange}
               />
             ) : (
-              <p>{user?.studentProfile?.skills || "Not Added"}</p>
+              <p>{student?.studentProfile?.skills || "Not Added"}</p>
             )}
           </div>
 
@@ -224,16 +224,16 @@ function Profile() {
                 type="url"
                 name="linkedInUrl"
                 placeholder="https://linkedin.com/in/username"
-                value={editData.linkedInUrl}
+                value={editData.linkedInUrl || ""}
                 onChange={handleChange}
               />
-            ) : user?.studentProfile?.linkedInUrl ? (
+            ) : student?.studentProfile?.linkedInUrl ? (
               <a
-                href={user.studentProfile.linkedInUrl}
+                href={student.studentProfile.linkedInUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {user.studentProfile.linkedInUrl}
+                {student.studentProfile.linkedInUrl}
               </a>
             ) : (
               <p>Not Added</p>

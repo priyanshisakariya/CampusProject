@@ -4,7 +4,7 @@ import logo from "../../assets/logo1.jpeg";
 import { FaBell, FaBars } from "react-icons/fa";
 
 function Topbar({ sidebarOpen, setSidebarOpen }) {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const student = JSON.parse(localStorage.getItem("student"));
   return (
     <header className="topbar">
 
@@ -31,7 +31,7 @@ function Topbar({ sidebarOpen, setSidebarOpen }) {
           <img src={logo} alt="Profile" className="profile-img" />
         </div>
         <div className="profile-info">
-        <h4>{user?.fullName}</h4>
+        <h4>{student?.fullName}</h4>
         <p>Student</p>
       </div>
 
