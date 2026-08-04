@@ -1,5 +1,7 @@
 package com.campus.campus_backend.controller;
 
+import com.campus.campus_backend.dto.praporsal.ProposalRequestDTO;
+import com.campus.campus_backend.dto.praporsal.ProposalResponseDTO;
 import com.campus.campus_backend.entity.SubmitProposal;
 import com.campus.campus_backend.repository.SubmitProposalRepository;
 import com.campus.campus_backend.service.SubmitProposalService;
@@ -18,10 +20,10 @@ public class SubmitProposalController {
 
     // Submit Project Proposal
     @PostMapping("/submit")
-    public SubmitProposal submitProposal(
-            @RequestBody SubmitProposal proposal){
+    public ProposalResponseDTO submitProposal(
+            @RequestBody ProposalRequestDTO requestDTO){
 
-        return submitProposalService.submitProposal(proposal);
+        return submitProposalService.submitProposal(requestDTO);
 
     }
 

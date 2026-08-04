@@ -1,5 +1,11 @@
 package com.campus.campus_backend.controller;
+import com.campus.campus_backend.dto.login.LoginRequestDTO;
+import com.campus.campus_backend.dto.login.LoginResponseDTO;
+import com.campus.campus_backend.dto.profile.StudentProfileRequestDTO;
+import com.campus.campus_backend.dto.profile.StudentProfileResponseDTO;
+import com.campus.campus_backend.dto.student.StudentRegisterDTO;
 import com.campus.campus_backend.entity.Student;
+import com.campus.campus_backend.repository.StudentRepository;
 import com.campus.campus_backend.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,36 +16,30 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
 
     @Autowired
-    private StudentService service;
-    @Autowired
     private StudentService studentService;
 
 
     // Registration API
     @PostMapping("/register")
-    public Student registerStudent(@RequestBody Student student) {
-        System.out.println("Full Name = " + student.getFullName());
-        System.out.println("Email = " + student.getEmail());
+    public Student registerStudent(@RequestBody StudentRegisterDTO requestDTO) {
 
-        return service.registerStudent(student);
+
+        return studentService.registerStudent(requestDTO);
     }
 
     // Login API
     @PostMapping("/login")
-    public Student loginStudent(@RequestBody Student student) {
+    public LoginResponseDTO loginStudent(@RequestBody LoginRequestDTO requestDTO) {
 
-        return service.loginStudent(
-                student.getFullName(),
-                student.getPassword()
-        );
+        return studentService.loginStudent(requestDTO);
     }
 
     //edit profile
     @PutMapping("/update/{id}")
-    public Student updateStudent(@PathVariable Integer id,
-                                 @RequestBody Student student) {
+    public StudentProfileResponseDTO updateStudent(@PathVariable Integer id,
+                                                   @RequestBody StudentProfileRequestDTO requestDTO) {
 
-        return service.updateStudent(id, student);
+        return studentService.updateStudent(id, requestDTO);
     }
 
     //for submit proporsal
