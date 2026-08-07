@@ -73,4 +73,5 @@ public class StudentProfile {
     public void setStudent(Student student) {
         this.student = student;
     }
+
 }

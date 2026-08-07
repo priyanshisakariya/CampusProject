@@ -8,7 +8,7 @@ function StudentLogin() {
   const navigate = useNavigate();
 
   const [login, setLogin] = useState({
-    fullName: "",
+    email: "",
     password: "",
   });
 
@@ -36,13 +36,14 @@ function StudentLogin() {
 
         console.log(data);
 
-        // Save logged-in user
         localStorage.setItem("student", JSON.stringify(data));
 
         alert("Login Successful!");
         navigate("/student-portal");
       } else {
-        alert("Invalid Name or Password!");
+        const error = await response.text();
+        console.log("Backend Error:", error);
+        alert(error);
       }
     } catch (error) {
       console.error(error);
@@ -65,13 +66,13 @@ function StudentLogin() {
         <p className="subtitle">Login to access your Project Tracking Portal</p>
 
         <form onSubmit={handleSubmit}>
-          <label>Full Name</label>
+          <label>Email</label>
 
           <input
-            type="text"
-            name="fullName"
-            placeholder="Enter Full Name"
-            value={login.fullName}
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            value={login.email}
             onChange={handleChange}
             required
           />

@@ -33,6 +33,7 @@ public class StudentService {
         student.setDepartment(requestDTO.getDepartment());
         student.setMobileNo(requestDTO.getMobileNo());
         student.setSem(requestDTO.getSem());
+        student.setAcademicYear(requestDTO.getAcademicYear());
 
         return studentRepository.save(student);
     }
@@ -63,6 +64,12 @@ public class StudentService {
         responseDTO.setId(student.getId());
         responseDTO.setFullName(student.getFullName());
         responseDTO.setEmail(student.getEmail());
+        responseDTO.setMobileNo(student.getMobileNo());
+        responseDTO.setEnrollmentNo(student.getEnrollmentNo());
+        responseDTO.setDepartment(student.getDepartment());
+        responseDTO.setSem(student.getSem());
+        responseDTO.setAcademicYear(student.getAcademicYear());
+
         responseDTO.setRole("STUDENT");
 
         // 6. Return Response DTO
@@ -83,6 +90,7 @@ public class StudentService {
         student.setDepartment(requestDTO.getDepartment());
         student.setSem(requestDTO.getSem());
 
+
         // Create StudentProfile if it doesn't exist
         if (student.getStudentProfile() == null) {
             StudentProfile profile = new StudentProfile();
@@ -95,6 +103,7 @@ public class StudentService {
         student.getStudentProfile().setDateOfBirth(requestDTO.getDateOfBirth());
         student.getStudentProfile().setSkills(requestDTO.getSkills());
         student.getStudentProfile().setLinkedInUrl(requestDTO.getLinkedInUrl());
+
 
         // Save
         Student savedStudent = studentRepository.save(student);
@@ -109,6 +118,7 @@ public class StudentService {
         responseDTO.setEnrollmentNo(savedStudent.getEnrollmentNo());
         responseDTO.setDepartment(savedStudent.getDepartment());
         responseDTO.setSem(savedStudent.getSem());
+        responseDTO.setAcademicYear(savedStudent.getAcademicYear());
 
         responseDTO.setAddress(savedStudent.getStudentProfile().getAddress());
         responseDTO.setDateOfBirth(savedStudent.getStudentProfile().getDateOfBirth());

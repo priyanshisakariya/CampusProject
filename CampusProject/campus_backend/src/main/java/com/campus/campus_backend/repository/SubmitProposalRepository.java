@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SubmitProposalRepository extends JpaRepository<SubmitProposal,Integer> {
     boolean existsByStudent(Student student);
+    boolean existsByProjectTitle(String projectTitle);
+
 }

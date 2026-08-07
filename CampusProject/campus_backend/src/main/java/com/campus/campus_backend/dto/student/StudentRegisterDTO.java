@@ -8,6 +8,7 @@ public class StudentRegisterDTO {
     private String department;
     private String mobileNo;
     private String sem;
+    private String academicYear;
 
     public StudentRegisterDTO() {
     }
@@ -66,5 +67,13 @@ public class StudentRegisterDTO {
 
     public void setSem(String sem) {
         this.sem = sem;
+    }
+
+    public String getAcademicYear() {
+        return academicYear;
+    }
+
+    public void setAcademicYear(String academicYear) {
+        this.academicYear = academicYear;
     }
 }

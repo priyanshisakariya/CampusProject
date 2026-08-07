@@ -25,17 +25,17 @@ function SubmitProposal() {
     proposal: null,
   });
   useEffect(() => {
-    const student = JSON.parse(localStorage.getItem("student"));
+  const student = JSON.parse(localStorage.getItem("student"));
 
-    if (student) {
-      setFormData((prev) => ({
-        ...prev,
-        studentId: student.id,
-        studentName: student.fullName,
-        enrollment: student.enrollmentNo,
-      }));
-    }
-  }, []);
+  if (student) {
+    setFormData((prev) => ({
+      ...prev,
+      studentId: student.id || student.Id,
+      studentName: student.fullName,
+      enrollment: student.enrollmentNo,
+    }));
+  }
+}, []);
 
   const submitProposal = async (proposalData) => {
     const response = await fetch("http://localhost:8081/proposal/submit", {
@@ -70,22 +70,33 @@ function SubmitProposal() {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
+  console.log("Student ID:", formData.studentId);
+  console.log("Form Data:", formData);
+
+  if (!formData.studentId) {
+    alert("Student ID not found. Please login again.");
+    return;
+  }
+
   const proposalData = {
-    student: {
-        id: formData.studentId
-    },
-    projectTitle: formData.projectTitle,
-    projectDomain: formData.projectDomain,
-    guideName: formData.guideName,
-    technologyStack: formData.technologyStack.join(","),
-    otherTechnology: formData.otherTechnology,
-    member2Name: formData.member2Name,
-    member2Enrollment: formData.member2Enrollment,
-    member3Name: formData.member3Name,
-    member3Enrollment: formData.member3Enrollment,
-    projectDescription: formData.description,
-    proposalFile: formData.proposal ? formData.proposal.name : "",
-  };
+  studentId: formData.studentId,
+
+  projectTitle: formData.projectTitle,
+  projectDomain: formData.projectDomain,
+  guideName: formData.guideName,
+  technologyStack: formData.technologyStack.join(","),
+  otherTechnology: formData.otherTechnology,
+  member2Name: formData.member2Name,
+  member2Enrollment: formData.member2Enrollment,
+  member3Name: formData.member3Name,
+  member3Enrollment: formData.member3Enrollment,
+  projectDescription: formData.description,
+  proposalFile: formData.proposal
+    ? formData.proposal.name
+    : "",
+};
+
+  console.log("Sending Proposal:", proposalData);
 
   const result = await submitProposal(proposalData);
 
@@ -96,7 +107,7 @@ function SubmitProposal() {
   const student = JSON.parse(localStorage.getItem("student"));
 
   setFormData({
-    studentId: student?.id || "",
+    studentId: student?.id || student?.Id || "",
     studentName: student?.fullName || "",
     enrollment: student?.enrollmentNo || "",
 

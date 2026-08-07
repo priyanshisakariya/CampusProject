@@ -13,6 +13,7 @@ function StudentRegister() {
     department: "",
     sem: "",
     enrollmentNo: "",
+    academicYear: "",
   });
 
   const handleChange = (e) => {
@@ -28,16 +29,13 @@ function StudentRegister() {
     console.log(student);
 
     try {
-      const response = await fetch(
-        "http://localhost:8081/student/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(student),
-        }
-      );
+      const response = await fetch("http://localhost:8081/student/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(student),
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -56,12 +54,13 @@ function StudentRegister() {
   };
 
   return (
-    <div className="register-container" style={{ backgroundImage: `url(${background})` }}>
-
+    <div
+      className="register-container"
+      style={{ backgroundImage: `url(${background})` }}
+    >
       <h2>Student Registration</h2>
 
       <form onSubmit={handleSubmit}>
-
         <label>Full Name</label>
         <input
           type="text"
@@ -117,17 +116,28 @@ function StudentRegister() {
         </select>
 
         <label>Semester</label>
-        <select
-          name="sem"
-          value={student.sem}
-          onChange={handleChange}
-          required
-        >
+        <select name="sem" value={student.sem} onChange={handleChange} required>
           <option value="">Select Semester</option>
           <option value="Sem 1">Sem 1</option>
           <option value="Sem 2">Sem 2</option>
           <option value="Sem 3">Sem 3</option>
           <option value="Sem 4">Sem 4</option>
+        </select>
+
+        <label>Academic Year</label>
+
+        <select
+          name="academicYear"
+          value={student.academicYear}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Academic Year</option>
+          <option value="2023-2025">2023-2025</option>
+          <option value="2024-2026">2024-2026</option>
+          <option value="2025-2027">2025-2027</option>
+          <option value="2026-2028">2026-2028</option>
+          <option value="2027-2029">2027-2029</option>
         </select>
 
         <label>Enrollment Number</label>
@@ -140,19 +150,13 @@ function StudentRegister() {
           required
         />
 
-        <button type="submit">
-          Register
-        </button>
+        <button type="submit">Register</button>
 
         <p className="login-link">
           Already Have an Account?
-          <span onClick={() => navigate("/student-login")}>
-            {" "}Login
-          </span>
+          <span onClick={() => navigate("/student-login")}> Login</span>
         </p>
-
       </form>
-
     </div>
   );
 }

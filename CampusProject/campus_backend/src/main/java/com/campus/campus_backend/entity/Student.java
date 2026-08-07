@@ -1,5 +1,6 @@
 package com.campus.campus_backend.entity;
 
+import com.campus.campus_backend.dto.profile.StudentProfileResponseDTO;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
@@ -22,6 +23,8 @@ public class Student {
     private String department;
     private String mobileNo;
     private String sem;
+
+    private String academicYear;
 
     @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
     private StudentProfile studentProfile;
@@ -99,6 +102,13 @@ public class Student {
         return studentProfile;
     }
 
+    public String getAcademicYear() {
+        return academicYear;
+    }
+
+    public void setAcademicYear(String academicYear) {
+        this.academicYear = academicYear;
+    }
     public void setStudentProfile(StudentProfile studentProfile) {
         this.studentProfile = studentProfile;
     }

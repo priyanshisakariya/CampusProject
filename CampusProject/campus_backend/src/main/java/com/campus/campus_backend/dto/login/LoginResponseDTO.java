@@ -1,20 +1,27 @@
 package com.campus.campus_backend.dto.login;
 
 public class LoginResponseDTO {
-    private Integer Id;
+    private Integer id;
     private String fullName;
     private String email;
     private String role;
+    private String mobileNo;
+    private String enrollmentNo;
+    private String department;
+    private String sem;
+    private String academicYear;
+
+
 
     public LoginResponseDTO() {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFullName() {
@@ -39,5 +46,45 @@ public class LoginResponseDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+    public String getEnrollmentNo() {
+        return enrollmentNo;
+    }
+
+    public void setEnrollmentNo(String enrollmentNo) {
+        this.enrollmentNo = enrollmentNo;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getSem() {
+        return sem;
+    }
+
+    public void setSem(String sem) {
+        this.sem = sem;
+    }
+
+    public String getAcademicYear() {
+        return academicYear;
+    }
+
+    public void setAcademicYear(String academicYear) {
+        this.academicYear = academicYear;
     }
 }

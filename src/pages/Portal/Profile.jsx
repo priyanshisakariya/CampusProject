@@ -2,7 +2,9 @@ import { useState } from "react";
 import "./Profile.css";
 
 function Profile() {
-  const [student, setStudent] = useState(JSON.parse(localStorage.getItem("student")));
+  const [student, setStudent] = useState(
+    JSON.parse(localStorage.getItem("student")),
+  );
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -38,6 +40,8 @@ function Profile() {
 
     setIsEditing(false);
   };
+  console.log("Student Object:", student);
+  console.log("Student ID:", student?.Id);
 
   const handleSave = async () => {
     try {
@@ -49,25 +53,22 @@ function Profile() {
         enrollmentNo: student.enrollmentNo,
         department: student.department,
         sem: student.sem,
-        password: student.password,
 
-        studentProfile: {
-          address: editData.address,
-          dateOfBirth: editData.dateOfBirth,
-          skills: editData.skills,
-          linkedInUrl: editData.linkedInUrl,
-        },
+        address: editData.address,
+        dateOfBirth: editData.dateOfBirth,
+        skills: editData.skills,
+        linkedInUrl: editData.linkedInUrl,
       };
 
+      const studentId = student.id || student.Id;
+
       const response = await fetch(
-        `http://localhost:8081/student/update/${student.id}`,
+        `http://localhost:8081/student/update/${studentId}`,
         {
           method: "PUT",
-
           headers: {
             "Content-Type": "application/json",
           },
-
           body: JSON.stringify(requestData),
         },
       );
@@ -161,6 +162,11 @@ function Profile() {
           </div>
 
           <div className="detail-box">
+            <h4>Academic Year</h4>
+            <p>{student?.academicYear || "Not Added"}</p>
+          </div>
+
+          <div className="detail-box">
             <h4>Semester</h4>
 
             <p>{student?.sem}</p>
@@ -178,7 +184,7 @@ function Profile() {
                 rows="3"
               />
             ) : (
-              <p>{student?.studentProfile?.address || "Not Added"}</p>
+              <p>{student?.address || "Not Added"}</p>
             )}
           </div>
 
@@ -194,7 +200,7 @@ function Profile() {
                 onChange={handleChange}
               />
             ) : (
-              <p>{student?.studentProfile?.dateOfBirth || "Not Added"}</p>
+              <p>{student?.dateOfBirth || "Not Added"}</p>
             )}
           </div>
 
@@ -211,7 +217,7 @@ function Profile() {
                 onChange={handleChange}
               />
             ) : (
-              <p>{student?.studentProfile?.skills || "Not Added"}</p>
+              <p>{student?.skills || "Not Added"}</p>
             )}
           </div>
 
@@ -227,13 +233,13 @@ function Profile() {
                 value={editData.linkedInUrl || ""}
                 onChange={handleChange}
               />
-            ) : student?.studentProfile?.linkedInUrl ? (
+            ) : student?.linkedInUrl ? (
               <a
-                href={student.studentProfile.linkedInUrl}
+                href={student.linkedInUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {student.studentProfile.linkedInUrl}
+                student?.linkedInUrl
               </a>
             ) : (
               <p>Not Added</p>

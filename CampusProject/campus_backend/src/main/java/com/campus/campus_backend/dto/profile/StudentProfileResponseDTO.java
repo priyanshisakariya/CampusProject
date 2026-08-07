@@ -14,6 +14,7 @@ public class StudentProfileResponseDTO {
     private String dateOfBirth;
     private String skills;
     private String linkedInUrl;
+    private String academicYear;
 
     public StudentProfileResponseDTO() {
     }
@@ -104,5 +105,13 @@ public class StudentProfileResponseDTO {
 
     public void setLinkedInUrl(String linkedInUrl) {
         this.linkedInUrl = linkedInUrl;
+    }
+
+    public String getAcademicYear() {
+        return academicYear;
+    }
+
+    public void setAcademicYear(String academicYear) {
+        this.academicYear = academicYear;
     }
 }
