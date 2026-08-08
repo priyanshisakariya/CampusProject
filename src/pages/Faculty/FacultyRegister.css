@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===========================
+   BACKGROUND
+=========================== */
+
+body{
+    overflow-x:auto;
+}
+
+.register-container{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:120px 20px;
+
+    background-image:url("./assets/background.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+/* ===========================
+   GLASS CARD
+=========================== */
+
+.register-container form{
+
+    width:100%;
+    max-width:500px;
+
+    background:rgba(255,255,255,.22);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+/* ===========================
+   TITLE
+=========================== */
+
+.register-container h2{
+
+    position:absolute;
+    top:45px;
+
+    width:100%;
+
+    text-align:center;
+
+    font-size:38px;
+
+    color:#173B63;
+
+    font-weight:700;
+
+}
+
+/* ===========================
+   LABELS
+=========================== */
+
+.register-container label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    color:#173B63;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.register-container input,
+.register-container select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.75);
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.register-container input:focus,
+.register-container select:focus{
+
+    border:2px solid #2F80ED;
+
+    box-shadow:0 0 10px rgba(47,128,237,.35);
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.register-container button{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2F80ED;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.register-container button:hover{
+
+    background:#1565D8;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================
+   LOGIN LINK
+=========================== */
+
+.login-link{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#475569;
+
+}
+
+.login-link span{
+
+    color:#2F80ED;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.login-link span:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.register-container{
+
+padding:100px 20px;
+
+}
+
+.register-container form{
+
+padding:30px;
+
+}
+
+.register-container h2{
+
+font-size:30px;
+
+top:30px;
+
+}
+
+}

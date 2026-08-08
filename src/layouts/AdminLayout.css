@@ -1,0 +1,83 @@
+/* ==========================
+   Dashboard Layout
+========================== */
+
+.layout{
+    display:flex;
+    min-height:100vh;
+    background:#f5f7fb;
+}
+
+/* ==========================
+   Main Content
+========================== */
+
+.main{
+
+    margin-left:270px;
+
+    width:calc(100% - 270px);
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    transition:all .3s ease;
+
+    background:#f5f7fb;
+}
+
+/* When sidebar collapses */
+
+.main.expanded{
+
+    margin-left:80px;
+
+    width:calc(100% - 80px);
+}
+
+/* ==========================
+   Page Content
+========================== */
+
+.content{
+
+    flex:1;
+
+    padding:30px;
+
+    overflow-x:auto;
+
+    overflow-y:auto;
+
+    box-sizing:border-box;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:768px){
+
+.main{
+
+    margin-left:0;
+
+    width:100%;
+}
+
+.main.expanded{
+
+    margin-left:0;
+
+    width:100%;
+}
+
+.content{
+
+    padding:20px;
+}
+
+}

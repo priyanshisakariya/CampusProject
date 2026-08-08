@@ -1,0 +1,96 @@
+import { useState } from "react";
+import "./FacultyLogin.css";
+import { useNavigate } from "react-router-dom";
+
+function FacultyLogin() {
+  const navigate = useNavigate();
+
+  const [faculty, setFaculty] = useState({
+    phoneNumber: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFaculty({
+      ...faculty,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  console.log(faculty);
+
+  try {
+    const response = await fetch(
+      "http://localhost:8081/faculty/loginform/save",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(faculty),
+      }
+    );
+
+  if (response.ok) {
+
+    const message = await response.text();
+
+    alert(message);
+
+    navigate("/faculty-dashboard");
+
+} else {
+
+    const error = await response.text();
+
+    alert(error);
+
+}
+  } catch (error) {
+    console.error(error);
+    alert("Server Error!");
+  }
+};
+
+  return (
+    <div className="login-container">
+      <h2>Faculty Login</h2>
+
+      <form onSubmit={handleSubmit}>
+        <label>Phone Number</label>
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="Enter Phone Number"
+          value={faculty.phoneNumber}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          value={faculty.password}
+          onChange={handleChange}
+          required
+        />
+
+        <button type="submit">Login</button>
+
+        <p className="register-link">
+          Don't Have an Account?
+          <span onClick={() => navigate("/faculty-portal")}>
+            {" "}Register
+          </span>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+export default FacultyLogin;

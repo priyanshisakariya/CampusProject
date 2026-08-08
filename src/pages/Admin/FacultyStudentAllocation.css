@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main Container */
+
+.faculty-allocation-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  background: #f5f7fb;
+}
+
+/* Header */
+
+.allocation-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+/* Page Title */
+
+.table-title {
+  flex: 1;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #4b2e83;
+  margin: 0;
+}
+
+/* Download Button */
+
+.download-pdf-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 11px 18px;
+
+  background: #4b2e83;
+  color: white;
+
+  border: none;
+  border-radius: 7px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 3px 8px rgba(75, 46, 131, 0.25);
+}
+
+/* Download Icon */
+
+.download-icon {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+/* Button Hover */
+
+.download-pdf-btn:hover {
+  background: #382263;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(75, 46, 131, 0.35);
+}
+
+/* Button Active */
+
+.download-pdf-btn:active {
+  transform: translateY(0);
+}
+
+/* Table Wrapper */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+
+  background: #ffffff;
+
+  border-radius: 10px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Table */
+
+.allocation-table {
+  width: 100%;
+  min-width: 1200px;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
+}
+
+/* Table Header */
+
+.allocation-table thead {
+  background: #5b3f8c;
+}
+
+.allocation-table thead th {
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  padding: 14px 10px;
+
+  text-align: center;
+  vertical-align: middle;
+
+  border: 1px solid #4a3473;
+
+  line-height: 1.4;
+}
+
+/* Table Body */
+
+.allocation-table tbody td {
+  padding: 18px 10px;
+
+  text-align: center;
+  vertical-align: middle;
+
+  border: 1px solid #d8d8d8;
+
+  font-size: 14px;
+
+  color: #333333;
+
+  line-height: 1.4;
+}
+
+/* Alternate Rows */
+
+.allocation-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Hover */
+
+.allocation-table tbody tr:hover {
+  background: #f2ecff;
+  transition: 0.3s ease;
+}
+
+/* Student Names */
+
+.allocation-table td:nth-child(3),
+.allocation-table td:nth-child(5),
+.allocation-table td:nth-child(7) {
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Enrollment Numbers */
+
+.allocation-table td:nth-child(2),
+.allocation-table td:nth-child(4),
+.allocation-table td:nth-child(6) {
+  white-space: nowrap;
+}
+
+/* Faculty Guide */
+
+.allocation-table td:nth-child(8) {
+  font-weight: 500;
+}
+
+/* Scrollbar */
+
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #eeeeee;
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #5b3f8c;
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #4b2e83;
+}
+
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .faculty-allocation-container {
+    padding: 20px;
+  }
+
+  .allocation-header {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .table-title {
+    font-size: 25px;
+  }
+
+  .download-pdf-btn {
+    align-self: flex-end;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .faculty-allocation-container {
+    padding: 15px;
+  }
+
+  .allocation-header {
+    align-items: stretch;
+  }
+
+  .table-title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .download-pdf-btn {
+    align-self: center;
+  }
+
+  .allocation-table thead th,
+  .allocation-table tbody td {
+    font-size: 13px;
+    padding: 12px 8px;
+  }
+}
