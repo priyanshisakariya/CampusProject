@@ -40,22 +40,36 @@ import MarkManagement from "./pages/FacultyPortal/MarkManagement";
 import Review from "./pages/FacultyPortal/Review";
 import WeeklyReview from "./pages/FacultyPortal/WeeklyReview";
 
+
 function App() {
   return (
     <BrowserRouter>
 
       <Routes>
 
-        {/* ================= PUBLIC ================= */}
+        {/* =====================================================
+            PUBLIC PAGES
+        ===================================================== */}
 
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-        <Route path="/about" element={<About />} />
+        <Route
+          path="/about"
+          element={<About />}
+        />
 
-        <Route path="/services" element={<Services />} />
+        <Route
+          path="/services"
+          element={<Services />}
+        />
 
 
-        {/* ================= STUDENT AUTH ================= */}
+        {/* =====================================================
+            STUDENT AUTHENTICATION
+        ===================================================== */}
 
         <Route
           path="/student-register"
@@ -73,43 +87,52 @@ function App() {
         />
 
 
-        {/* ================= STUDENT PORTAL ================= */}
+        {/* =====================================================
+            STUDENT PORTAL
+        ===================================================== */}
 
         <Route
           path="/student-portal"
           element={<StudentPortal />}
         >
 
+          {/* Student Dashboard */}
           <Route
             index
             element={<Dashboard />}
           />
 
+          {/* Profile */}
           <Route
             path="profile"
             element={<Profile />}
           />
 
+          {/* Submit Proposal */}
           <Route
             path="proposal"
             element={<SubmitProposal />}
           />
 
+          {/* Weekly Progress */}
           <Route
             path="weekly-progress"
             element={<WeeklyProgress />}
           />
 
+          {/* Final Submission */}
           <Route
             path="final-submission"
             element={<FinalSubmission />}
           />
 
+          {/* Marks */}
           <Route
             path="marks"
             element={<Marks />}
           />
 
+          {/* Notifications */}
           <Route
             path="notification"
             element={<Notifications />}
@@ -118,7 +141,9 @@ function App() {
         </Route>
 
 
-        {/* ================= ADMIN LOGIN ================= */}
+        {/* =====================================================
+            ADMIN AUTHENTICATION
+        ===================================================== */}
 
         <Route
           path="/admin-login"
@@ -126,33 +151,40 @@ function App() {
         />
 
 
-        {/* ================= ADMIN PORTAL ================= */}
+        {/* =====================================================
+            ADMIN PORTAL
+        ===================================================== */}
 
         <Route
           path="/admin-dashboard"
           element={<AdminLayout />}
         >
 
+          {/* Admin Dashboard */}
           <Route
             index
             element={<AdminHome />}
           />
 
+          {/* Student Management */}
           <Route
             path="assigned-students"
             element={<AssignedStudents />}
           />
 
+          {/* Faculty Management */}
           <Route
             path="assigned-faculty"
             element={<AssignedFaculty />}
           />
 
+          {/* Mentor Assignment */}
           <Route
             path="mentor-assignment"
             element={<MentorAssignment />}
           />
 
+          {/* Reports */}
           <Route
             path="notifications"
             element={<FacultyStudentAllocation />}
@@ -161,7 +193,9 @@ function App() {
         </Route>
 
 
-        {/* ================= FACULTY AUTH ================= */}
+        {/* =====================================================
+            FACULTY AUTHENTICATION
+        ===================================================== */}
 
         <Route
           path="/faculty-login"
@@ -174,14 +208,16 @@ function App() {
         />
 
 
-        {/* ================= FACULTY PORTAL ================= */}
+        {/* =====================================================
+            FACULTY PORTAL
+        ===================================================== */}
 
         <Route
           path="/faculty-portal"
           element={<FacultyPortal />}
         >
 
-          {/* Default Faculty Dashboard */}
+          {/* Faculty Dashboard */}
           <Route
             index
             element={<FacultyDashboard />}
@@ -193,7 +229,7 @@ function App() {
             element={<AssignedStudentToFaculty />}
           />
 
-          {/* Comments */}
+          {/* Faculty Comments */}
           <Route
             path="comments"
             element={<FacultyCommentSection />}

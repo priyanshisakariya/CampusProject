@@ -55,12 +55,13 @@ function StudentLogin() {
     window.location.href = "http://localhost:8081/oauth2/authorization/google";
   };
 
+  
   return (
     <div
-      className="login-container"
+      className="student-login-container"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="login-card">
+      <div className="student-login-card">
         <h2>Welcome Back!</h2>
 
         <p className="subtitle">Login to access your Project Tracking Portal</p>
