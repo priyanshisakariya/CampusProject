@@ -25,32 +25,42 @@ function SubmitProposal() {
     proposal: null,
   });
   useEffect(() => {
-  const student = JSON.parse(localStorage.getItem("student"));
+    const student = JSON.parse(localStorage.getItem("student"));
 
-  if (student) {
-    setFormData((prev) => ({
-      ...prev,
-      studentId: student.id || student.Id,
-      studentName: student.fullName,
-      enrollment: student.enrollmentNo,
-    }));
-  }
-}, []);
+    if (student) {
+      setFormData((prev) => ({
+        ...prev,
+        studentId: student.id || student.Id,
+        studentName: student.fullName,
+        enrollment: student.enrollmentNo,
+      }));
+    }
+  }, []);
 
-  const submitProposal = async (proposalData) => {
-    const response = await fetch("http://localhost:8081/proposal/submit", {
+ const submitProposal = async (proposalData) => {
+  const response = await fetch(
+    "http://localhost:8081/proposal/submit",
+    {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify(proposalData),
-    });
+    }
+  );
 
-    return response.json();
-  };
+  const result = await response.json();
 
+  console.log("Backend Response:", result);
+
+  if (!response.ok) {
+    console.error("Backend Error:", result);
+    alert(result.message || "Proposal submission failed!");
+    return null;
+  }
+
+  return result;
+};
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -66,10 +76,10 @@ function SubmitProposal() {
       proposal: e.target.files[0],
     });
   };
-
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
+  console.log("========== SUBMIT START ==========");
   console.log("Student ID:", formData.studentId);
   console.log("Form Data:", formData);
 
@@ -79,27 +89,39 @@ function SubmitProposal() {
   }
 
   const proposalData = {
-  studentId: formData.studentId,
+    studentId: formData.studentId,
 
-  projectTitle: formData.projectTitle,
-  projectDomain: formData.projectDomain,
-  guideName: formData.guideName,
-  technologyStack: formData.technologyStack.join(","),
-  otherTechnology: formData.otherTechnology,
-  member2Name: formData.member2Name,
-  member2Enrollment: formData.member2Enrollment,
-  member3Name: formData.member3Name,
-  member3Enrollment: formData.member3Enrollment,
-  projectDescription: formData.description,
-  proposalFile: formData.proposal
-    ? formData.proposal.name
-    : "",
-};
+    projectTitle: formData.projectTitle,
+    projectDomain: formData.projectDomain,
+    guideName: formData.guideName,
 
-  console.log("Sending Proposal:", proposalData);
+    technologyStack: formData.technologyStack.join(","),
+
+    otherTechnology: formData.otherTechnology,
+
+    member2Name: formData.member2Name,
+    member2Enrollment: formData.member2Enrollment,
+
+    member3Name: formData.member3Name,
+    member3Enrollment: formData.member3Enrollment,
+
+    projectDescription: formData.description,
+
+    proposalFile: formData.proposal
+      ? formData.proposal.name
+      : "",
+  };
+
+  console.log("========== SENDING TO BACKEND ==========");
+  console.log(JSON.stringify(proposalData, null, 2));
 
   const result = await submitProposal(proposalData);
 
+  if (!result) {
+    return;
+  }
+
+  console.log("========== SUCCESS ==========");
   console.log(result);
 
   alert("Project Proposal Submitted Successfully!");
@@ -130,7 +152,7 @@ function SubmitProposal() {
 
   e.target.reset();
 };
-  const handleTechnologyChange = (e) => {
+   const handleTechnologyChange = (e) => {
     const { value, checked } = e.target;
 
     if (checked) {
@@ -216,119 +238,293 @@ function SubmitProposal() {
             onChange={handleChange}
             required
           />
-          <h2 className="section-title">Technology Stack</h2>
 
-          <div className="technology-grid">
-            <label>
-              <input
-                type="checkbox"
-                value="Java"
-                onChange={handleTechnologyChange}
-              />
-              Java
-            </label>
+         {/* Technology Stack */}
 
-            <label>
-              <input
-                type="checkbox"
-                value="Spring Boot"
-                onChange={handleTechnologyChange}
-              />
-              Spring Boot
-            </label>
+<h2 className="section-title">Technology Stack</h2>
 
-            <label>
-              <input
-                type="checkbox"
-                value="React.js"
-                onChange={handleTechnologyChange}
-              />
-              React.js
-            </label>
+<div className="technology-category">
+  <h3>🎨 Frontend</h3>
 
-            <label>
-              <input
-                type="checkbox"
-                value="HTML"
-                onChange={handleTechnologyChange}
-              />
-              HTML
-            </label>
+  <div className="technology-grid">
+    <label>
+      <input
+        type="checkbox"
+        value="React.js"
+        onChange={handleTechnologyChange}
+      />
+      React.js
+    </label>
 
-            <label>
-              <input
-                type="checkbox"
-                value="CSS"
-                onChange={handleTechnologyChange}
-              />
-              CSS
-            </label>
+    <label>
+      <input
+        type="checkbox"
+        value="Angular"
+        onChange={handleTechnologyChange}
+      />
+      Angular
+    </label>
 
-            <label>
-              <input
-                type="checkbox"
-                value="JavaScript"
-                onChange={handleTechnologyChange}
-              />
-              JavaScript
-            </label>
+    <label>
+      <input
+        type="checkbox"
+        value="Thymeleaf"
+        onChange={handleTechnologyChange}
+      />
+      Thymeleaf
+    </label>
 
-            <label>
-              <input
-                type="checkbox"
-                value="MySQL"
-                onChange={handleTechnologyChange}
-              />
-              MySQL
-            </label>
+    <label>
+      <input
+        type="checkbox"
+        value="HTML"
+        onChange={handleTechnologyChange}
+      />
+      HTML
+    </label>
 
-            <label>
-              <input
-                type="checkbox"
-                value="Python"
-                onChange={handleTechnologyChange}
-              />
-              Python
-            </label>
+    <label>
+      <input
+        type="checkbox"
+        value="CSS"
+        onChange={handleTechnologyChange}
+      />
+      CSS
+    </label>
 
-            <label>
-              <input
-                type="checkbox"
-                value="AWS"
-                onChange={handleTechnologyChange}
-              />
-              AWS
-            </label>
+    <label>
+      <input
+        type="checkbox"
+        value="JavaScript"
+        onChange={handleTechnologyChange}
+      />
+      JavaScript
+    </label>
+  </div>
+</div>
 
-            <label>
-              <input
-                type="checkbox"
-                value="Firebase"
-                onChange={handleTechnologyChange}
-              />
-              Firebase
-            </label>
+<div className="technology-category">
+  <h3>⚙️ Backend</h3>
 
-            <label>
-              <input
-                type="checkbox"
-                value="MongoDB"
-                onChange={handleTechnologyChange}
-              />
-              MongoDB
-            </label>
-          </div>
+  <div className="technology-grid">
+    <label>
+      <input
+        type="checkbox"
+        value="Node.js"
+        onChange={handleTechnologyChange}
+      />
+      Node.js
+    </label>
 
-          <label>Other Technology (Optional)</label>
+    <label>
+      <input
+        type="checkbox"
+        value="Spring Boot"
+        onChange={handleTechnologyChange}
+      />
+      Spring Boot
+    </label>
 
-          <input
-            type="text"
-            name="otherTechnology"
-            placeholder="Enter Other Technology"
-            value={formData.otherTechnology}
-            onChange={handleChange}
-          />
+    <label>
+      <input
+        type="checkbox"
+        value="Django"
+        onChange={handleTechnologyChange}
+      />
+      Django
+    </label>
 
+    <label>
+      <input
+        type="checkbox"
+        value="ASP.NET"
+        onChange={handleTechnologyChange}
+      />
+      ASP.NET
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Python"
+        onChange={handleTechnologyChange}
+      />
+      Python
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Java"
+        onChange={handleTechnologyChange}
+      />
+      Java
+    </label>
+  </div>
+</div>
+
+<div className="technology-category">
+  <h3>🗄️ Database</h3>
+
+  <div className="technology-grid">
+    <label>
+      <input
+        type="checkbox"
+        value="MongoDB"
+        onChange={handleTechnologyChange}
+      />
+      MongoDB
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="MySQL"
+        onChange={handleTechnologyChange}
+      />
+      MySQL
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="PostgreSQL"
+        onChange={handleTechnologyChange}
+      />
+      PostgreSQL
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Mongoose"
+        onChange={handleTechnologyChange}
+      />
+      Mongoose
+    </label>
+  </div>
+</div>
+
+<div className="technology-category">
+  <h3>📊 Data Science & AI</h3>
+
+  <div className="technology-grid">
+    <label>
+      <input
+        type="checkbox"
+        value="Data Science"
+        onChange={handleTechnologyChange}
+      />
+      Data Science
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Machine Learning"
+        onChange={handleTechnologyChange}
+      />
+      Machine Learning
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Artificial Intelligence"
+        onChange={handleTechnologyChange}
+      />
+      Artificial Intelligence
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Pandas"
+        onChange={handleTechnologyChange}
+      />
+      Pandas
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="NumPy"
+        onChange={handleTechnologyChange}
+      />
+      NumPy
+    </label>
+  </div>
+</div>
+
+<div className="technology-category">
+  <h3>☁️ DevOps & Cloud</h3>
+
+  <div className="technology-grid">
+    <label>
+      <input
+        type="checkbox"
+        value="AWS"
+        onChange={handleTechnologyChange}
+      />
+      AWS
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Docker"
+        onChange={handleTechnologyChange}
+      />
+      Docker
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Jenkins"
+        onChange={handleTechnologyChange}
+      />
+      Jenkins
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Git"
+        onChange={handleTechnologyChange}
+      />
+      Git
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="GitHub"
+        onChange={handleTechnologyChange}
+      />
+      GitHub
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        value="Terraform"
+        onChange={handleTechnologyChange}
+      />
+      Terraform
+    </label>
+  </div>
+</div>
+
+<label>Other Technology (Optional)</label>
+
+<input
+  type="text"
+  name="otherTechnology"
+  placeholder="Enter Other Technology"
+  value={formData.otherTechnology}
+  onChange={handleChange}
+/>
           {/* Team Members */}
 
           <h2 className="section-title">Team Members</h2>

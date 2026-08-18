@@ -4,7 +4,7 @@ import com.campus.campus_backend.dto.profile.StudentProfileResponseDTO;
 
 public class ProposalRequestDTO {
     private Integer studentId;      // NOT Student object
-
+    private String projectDescription;
     private String projectTitle;
     private String projectDomain;
     private String guideName;
@@ -14,7 +14,6 @@ public class ProposalRequestDTO {
     private String member2Enrollment;
     private String member3Name;
     private String member3Enrollment;
-    private String projectDescription;
     private String proposalFile;
 
     public ProposalRequestDTO() {

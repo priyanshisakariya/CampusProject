@@ -1,6 +1,6 @@
 import { FaProjectDiagram } from "react-icons/fa";
 
-function ProjectInfoCard() {
+function ProjectInfoCard({ formData }) {
   return (
     <div className="submission-card">
 
@@ -9,34 +9,40 @@ function ProjectInfoCard() {
         Project Information
       </h2>
 
-     <div className="form-group">
+      <div className="form-group">
         <label>Project Title</label>
+
         <input
           type="text"
-          placeholder="Enter Project Title"
+          value={formData.projectTitle || ""}
+          readOnly
+          placeholder="Project Title"
         />
       </div>
 
       <div className="form-group">
         <label>Project Domain</label>
+
         <input
           type="text"
-          placeholder="Enter Project Domain"
+          value={formData.projectDomain || ""}
+          readOnly
+          placeholder="Project Domain"
         />
       </div>
 
       <div className="form-group">
         <label>Technologies Used</label>
+
         <input
           type="text"
-          placeholder="React, Spring Boot, MySQL"
+          value={formData.technologiesUsed || ""}
+          readOnly
+          placeholder="Technologies Used"
         />
       </div>
 
-    
-
-      </div>
-
+    </div>
   );
 }
 

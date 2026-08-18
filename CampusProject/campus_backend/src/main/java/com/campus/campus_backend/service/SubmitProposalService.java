@@ -6,6 +6,7 @@ import com.campus.campus_backend.entity.Student;
 import com.campus.campus_backend.entity.SubmitProposal;
 import com.campus.campus_backend.repository.StudentRepository;
 import com.campus.campus_backend.repository.SubmitProposalRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,29 @@ public class SubmitProposalService {
 
     public ProposalResponseDTO submitProposal(ProposalRequestDTO requestDTO) {
 
-        // 1. Student must exist
+        // =========================================================
+        // 1. STUDENT VALIDATION
+        // =========================================================
+
         Student student = studentRepository.findById(requestDTO.getStudentId())
                 .orElseThrow(() ->
                         new RuntimeException("Student not found."));
 
 
-        //A student should not be able to submit multiple proposals.
+        // =========================================================
+        // 2. ONE PROPOSAL PER STUDENT
+        // =========================================================
+
         if (submitProposalRepository.existsByStudent(student)) {
-            throw new RuntimeException("You have already submitted a project proposal.");
+            throw new RuntimeException(
+                    "You have already submitted a project proposal."
+            );
         }
+
+
+        // =========================================================
+        // 3. PROJECT TITLE VALIDATION
+        // =========================================================
 
         if (requestDTO.getProjectTitle() == null ||
                 requestDTO.getProjectTitle().trim().isEmpty()) {
@@ -37,156 +51,375 @@ public class SubmitProposalService {
             throw new RuntimeException("Project title is required.");
         }
 
-        if (requestDTO.getProjectTitle().trim().length() < 5 ||
-                requestDTO.getProjectTitle().trim().length() > 200) {
+        String projectTitle = requestDTO.getProjectTitle().trim();
 
-            throw new RuntimeException("Project title must be between 5 and 200 characters.");
+        if (projectTitle.length() < 5 ||
+                projectTitle.length() > 200) {
+
+            throw new RuntimeException(
+                    "Project title must be between 5 and 200 characters."
+            );
         }
 
-        // Duplicate Project Title Validation
-        if (submitProposalRepository.existsByProjectTitle(requestDTO.getProjectTitle().trim())) {
-            throw new RuntimeException("Project title already exists.");
+
+        // =========================================================
+        // 4. DUPLICATE PROJECT TITLE
+        // =========================================================
+
+        if (submitProposalRepository.existsByProjectTitle(projectTitle)) {
+
+            throw new RuntimeException(
+                    "Project title already exists."
+            );
         }
 
-        // 3. Project Domain Validation
+
+        // =========================================================
+        // 5. PROJECT DOMAIN VALIDATION
+        // =========================================================
+
         if (requestDTO.getProjectDomain() == null ||
                 requestDTO.getProjectDomain().trim().isEmpty()) {
 
-            throw new RuntimeException("Please select project domain.");
+            throw new RuntimeException(
+                    "Please select project domain."
+            );
         }
 
-        if (requestDTO.getGuideName().trim().length() < 3) {
-            throw new RuntimeException("Guide name is too short.");
+        String projectDomain = requestDTO.getProjectDomain().trim();
+
+
+        // =========================================================
+        // 6. GUIDE NAME VALIDATION
+        // =========================================================
+
+        if (requestDTO.getGuideName() == null ||
+                requestDTO.getGuideName().trim().isEmpty()) {
+
+            throw new RuntimeException(
+                    "Guide name is required."
+            );
         }
 
-        // 5. Technology Stack Validation
+        String guideName = requestDTO.getGuideName().trim();
+
+        if (guideName.length() < 3) {
+
+            throw new RuntimeException(
+                    "Guide name is too short."
+            );
+        }
+
+
+        // =========================================================
+        // 7. TECHNOLOGY STACK VALIDATION
+        // =========================================================
+
         if (requestDTO.getTechnologyStack() == null ||
                 requestDTO.getTechnologyStack().trim().isEmpty()) {
 
-            throw new RuntimeException("Select at least one technology.");
+            throw new RuntimeException(
+                    "Select at least one technology."
+            );
         }
 
-        // 6. Project Description Validation
+        String technologyStack =
+                requestDTO.getTechnologyStack().trim();
+
+
+        // =========================================================
+        // 8. PROJECT DESCRIPTION VALIDATION
+        // =========================================================
+
         if (requestDTO.getProjectDescription() == null ||
                 requestDTO.getProjectDescription().trim().isEmpty()) {
 
-            throw new RuntimeException("Project description is required.");
+            throw new RuntimeException(
+                    "Project description is required."
+            );
         }
 
-        if (requestDTO.getProjectDescription().trim().length() < 30) {
-            throw new RuntimeException("Project description must contain at least 30 characters.");
+        String projectDescription =
+                requestDTO.getProjectDescription().trim();
+
+        if (projectDescription.length() < 30) {
+
+            throw new RuntimeException(
+                    "Project description must contain at least 30 characters."
+            );
         }
 
-        if (requestDTO.getProjectDescription().trim().length() > 2000) {
-            throw new RuntimeException("Project description cannot exceed 2000 characters.");
+        if (projectDescription.length() > 2000) {
+
+            throw new RuntimeException(
+                    "Project description cannot exceed 2000 characters."
+            );
         }
 
-        // 7. Proposal File Validation
+
+        // =========================================================
+        // 9. PROPOSAL FILE VALIDATION
+        // =========================================================
+
         if (requestDTO.getProposalFile() == null ||
                 requestDTO.getProposalFile().trim().isEmpty()) {
 
-            throw new RuntimeException("Proposal file is required.");
+            throw new RuntimeException(
+                    "Proposal file is required."
+            );
         }
 
-        if (!requestDTO.getProposalFile().toLowerCase().endsWith(".pdf")) {
-            throw new RuntimeException("Only PDF proposal files are allowed.");
+        String proposalFile =
+                requestDTO.getProposalFile().trim();
+
+        if (!proposalFile.toLowerCase().endsWith(".pdf")) {
+
+            throw new RuntimeException(
+                    "Only PDF proposal files are allowed."
+            );
         }
-        //member 2 validation
+
+
+        // =========================================================
+        // 10. MEMBER 2 VALIDATION
+        // =========================================================
+
         if (requestDTO.getMember2Name() != null &&
                 !requestDTO.getMember2Name().trim().isEmpty()) {
 
             if (requestDTO.getMember2Enrollment() == null ||
                     requestDTO.getMember2Enrollment().trim().isEmpty()) {
 
-                throw new RuntimeException("Member 2 enrollment number is required.");
+                throw new RuntimeException(
+                        "Member 2 enrollment number is required."
+                );
             }
 
-            if (requestDTO.getMember2Enrollment().equals(student.getEnrollmentNo())) {
-                throw new RuntimeException("You cannot add yourself as Member 2.");
+            if (requestDTO.getMember2Enrollment()
+                    .trim()
+                    .equals(student.getEnrollmentNo())) {
+
+                throw new RuntimeException(
+                        "You cannot add yourself as Member 2."
+                );
             }
         }
 
-        //member 3 validation
+
+        // =========================================================
+        // 11. MEMBER 3 VALIDATION
+        // =========================================================
+
         if (requestDTO.getMember3Name() != null &&
                 !requestDTO.getMember3Name().trim().isEmpty()) {
 
             if (requestDTO.getMember3Enrollment() == null ||
                     requestDTO.getMember3Enrollment().trim().isEmpty()) {
 
-                throw new RuntimeException("Member 3 enrollment number is required.");
+                throw new RuntimeException(
+                        "Member 3 enrollment number is required."
+                );
             }
 
-            if (requestDTO.getMember3Enrollment().equals(student.getEnrollmentNo())) {
-                throw new RuntimeException("You cannot add yourself as Member 3.");
-            }
-        }
+            if (requestDTO.getMember3Enrollment()
+                    .trim()
+                    .equals(student.getEnrollmentNo())) {
 
-        //member 3 validation
-        if (requestDTO.getMember3Name() != null &&
-                !requestDTO.getMember3Name().trim().isEmpty()) {
-
-            if (requestDTO.getMember3Enrollment() == null ||
-                    requestDTO.getMember3Enrollment().trim().isEmpty()) {
-
-                throw new RuntimeException("Member 3 enrollment number is required.");
-            }
-
-            if (requestDTO.getMember3Enrollment().equals(student.getEnrollmentNo())) {
-                throw new RuntimeException("You cannot add yourself as Member 3.");
+                throw new RuntimeException(
+                        "You cannot add yourself as Member 3."
+                );
             }
         }
 
-        //Duplicate Team Member validation
+
+        // =========================================================
+        // 12. DUPLICATE TEAM MEMBER VALIDATION
+        // =========================================================
+
         if (requestDTO.getMember2Enrollment() != null &&
                 requestDTO.getMember3Enrollment() != null &&
-                requestDTO.getMember2Enrollment().equals(requestDTO.getMember3Enrollment())) {
+                !requestDTO.getMember2Enrollment().trim().isEmpty() &&
+                !requestDTO.getMember3Enrollment().trim().isEmpty() &&
+                requestDTO.getMember2Enrollment()
+                        .trim()
+                        .equals(requestDTO.getMember3Enrollment().trim())) {
 
-            throw new RuntimeException("Duplicate team members are not allowed.");
+            throw new RuntimeException(
+                    "Duplicate team members are not allowed."
+            );
         }
 
 
+        // =========================================================
+        // 13. CREATE PROPOSAL ENTITY
+        // =========================================================
 
-
-        // Create Proposal Entity
         SubmitProposal proposal = new SubmitProposal();
 
         proposal.setStudent(student);
-        proposal.setProjectTitle(requestDTO.getProjectTitle().trim());
-        proposal.setProjectDomain(requestDTO.getProjectDomain().trim());
-        proposal.setGuideName(requestDTO.getGuideName().trim());
-        proposal.setTechnologyStack(requestDTO.getTechnologyStack().trim());
-        proposal.setOtherTechnology(requestDTO.getOtherTechnology() == null ? null : requestDTO.getOtherTechnology().trim());
 
-        proposal.setMember2Name(requestDTO.getMember2Name() == null ? null : requestDTO.getMember2Name().trim());
+        proposal.setProjectTitle(projectTitle);
 
-        proposal.setMember2Enrollment(requestDTO.getMember2Enrollment() == null ? null : requestDTO.getMember2Enrollment().trim());
+        proposal.setProjectDomain(projectDomain);
 
-        proposal.setMember3Name(requestDTO.getMember3Name() == null ? null : requestDTO.getMember3Name().trim());
+        proposal.setGuideName(guideName);
 
-        proposal.setMember3Enrollment(requestDTO.getMember3Enrollment() == null ? null : requestDTO.getMember3Enrollment().trim());
-        proposal.setProposalFile(requestDTO.getProposalFile());
+        proposal.setTechnologyStack(technologyStack);
 
-        SubmitProposal savedProposal = submitProposalRepository.save(proposal);
+        proposal.setOtherTechnology(
+                requestDTO.getOtherTechnology() == null
+                        ? null
+                        : requestDTO.getOtherTechnology().trim()
+        );
+
+
+        // Member 2
+
+        proposal.setMember2Name(
+                requestDTO.getMember2Name() == null
+                        ? null
+                        : requestDTO.getMember2Name().trim()
+        );
+
+        proposal.setMember2Enrollment(
+                requestDTO.getMember2Enrollment() == null
+                        ? null
+                        : requestDTO.getMember2Enrollment().trim()
+        );
+
+
+        // Member 3
+
+        proposal.setMember3Name(
+                requestDTO.getMember3Name() == null
+                        ? null
+                        : requestDTO.getMember3Name().trim()
+        );
+
+        proposal.setMember3Enrollment(
+                requestDTO.getMember3Enrollment() == null
+                        ? null
+                        : requestDTO.getMember3Enrollment().trim()
+        );
+
+
+        // =========================================================
+        // IMPORTANT FIX
+        // =========================================================
+
+        proposal.setProjectDescription(projectDescription);
+
+
+        // Proposal PDF filename
+
+        proposal.setProposalFile(proposalFile);
+
+
+        // =========================================================
+        // 14. SAVE TO DATABASE
+        // =========================================================
+
+        SubmitProposal savedProposal =
+                submitProposalRepository.save(proposal);
+
+
+        // =========================================================
+        // 15. CREATE RESPONSE DTO
+        // =========================================================
+
+        ProposalResponseDTO responseDTO =
+                new ProposalResponseDTO();
+
+        responseDTO.setProposalId(
+                savedProposal.getProposalId()
+        );
+
+        responseDTO.setStudentId(
+                savedProposal.getStudent().getId()
+        );
+
+        responseDTO.setProjectTitle(
+                savedProposal.getProjectTitle()
+        );
+
+        responseDTO.setProjectDomain(
+                savedProposal.getProjectDomain()
+        );
+
+        responseDTO.setGuideName(
+                savedProposal.getGuideName()
+        );
+
+        responseDTO.setTechnologyStack(
+                savedProposal.getTechnologyStack()
+        );
+
+        responseDTO.setOtherTechnology(
+                savedProposal.getOtherTechnology()
+        );
+
+        responseDTO.setMember2Name(
+                savedProposal.getMember2Name()
+        );
+
+        responseDTO.setMember2Enrollment(
+                savedProposal.getMember2Enrollment()
+        );
+
+        responseDTO.setMember3Name(
+                savedProposal.getMember3Name()
+        );
+
+        responseDTO.setMember3Enrollment(
+                savedProposal.getMember3Enrollment()
+        );
+
+        responseDTO.setProjectDescription(
+                savedProposal.getProjectDescription()
+        );
+
+        responseDTO.setProposalFile(
+                savedProposal.getProposalFile()
+        );
+
+
+        // =========================================================
+        // 16. RETURN RESPONSE
+        // =========================================================
+
+        return responseDTO;
+    }
+
+    //get
+    public ProposalResponseDTO getProposalByStudent(Integer studentId) {
+
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() ->
+                        new RuntimeException("Student not found."));
+
+        SubmitProposal proposal = submitProposalRepository.findByStudent(student)
+                .orElseThrow(() ->
+                        new RuntimeException("Proposal not found for this student."));
 
         ProposalResponseDTO responseDTO = new ProposalResponseDTO();
 
-        responseDTO.setProposalId(savedProposal.getProposalId());
-        responseDTO.setStudentId(savedProposal.getStudent().getId());
+        responseDTO.setProposalId(proposal.getProposalId());
+        responseDTO.setStudentId(proposal.getStudent().getId());
 
-        responseDTO.setProjectTitle(savedProposal.getProjectTitle());
-        responseDTO.setProjectDomain(savedProposal.getProjectDomain());
-        responseDTO.setGuideName(savedProposal.getGuideName());
-        responseDTO.setTechnologyStack(savedProposal.getTechnologyStack());
-        responseDTO.setOtherTechnology(savedProposal.getOtherTechnology());
+        responseDTO.setProjectTitle(proposal.getProjectTitle());
+        responseDTO.setProjectDomain(proposal.getProjectDomain());
+        responseDTO.setGuideName(proposal.getGuideName());
+        responseDTO.setTechnologyStack(proposal.getTechnologyStack());
+        responseDTO.setOtherTechnology(proposal.getOtherTechnology());
 
-        responseDTO.setMember2Name(savedProposal.getMember2Name());
-        responseDTO.setMember2Enrollment(savedProposal.getMember2Enrollment());
+        responseDTO.setMember2Name(proposal.getMember2Name());
+        responseDTO.setMember2Enrollment(proposal.getMember2Enrollment());
 
-        responseDTO.setMember3Name(savedProposal.getMember3Name());
-        responseDTO.setMember3Enrollment(savedProposal.getMember3Enrollment());
+        responseDTO.setMember3Name(proposal.getMember3Name());
+        responseDTO.setMember3Enrollment(proposal.getMember3Enrollment());
 
-        responseDTO.setProjectDescription(savedProposal.getProjectDescription());
-        responseDTO.setProposalFile(savedProposal.getProposalFile());
+        responseDTO.setProjectDescription(proposal.getProjectDescription());
+        responseDTO.setProposalFile(proposal.getProposalFile());
 
         return responseDTO;
     }

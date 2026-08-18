@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./WeeklyProgress.css";
 
 function WeeklyProgress() {
+
   const [form, setForm] = useState({
+    studentId: "",
     week: "",
     title: "",
     completed: "",
@@ -13,81 +15,293 @@ function WeeklyProgress() {
     file: null,
   });
 
+
+  // Get logged-in student from localStorage
+  useEffect(() => {
+
+    const student = JSON.parse(
+      localStorage.getItem("student")
+    );
+
+    if (student) {
+
+      setForm((prev) => ({
+        ...prev,
+
+        studentId:
+          student.id || student.Id || "",
+
+      }));
+
+    }
+
+  }, []);
+
+
   const handleChange = (e) => {
+
     const { name, value, files } = e.target;
 
     if (files) {
-      setForm({ ...form, file: files[0] });
+
+      setForm({
+        ...form,
+        file: files[0],
+      });
+
     } else {
-      setForm({ ...form, [name]: value });
+
+      setForm({
+        ...form,
+        [name]: value,
+      });
+
     }
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
 
-    console.log(form);
+    console.log("========== WEEKLY PROGRESS START ==========");
 
-    alert("Weekly Progress Submitted Successfully!");
+    console.log("Student ID:", form.studentId);
 
-    setForm({
-      week: "",
-      title: "",
-      completed: "",
-      status: "",
-      percentage: "",
-      challenges: "",
-      file: null,
-    });
+    console.log("Form Data:", form);
+
+
+    // Student ID check
+    if (!form.studentId) {
+
+      alert(
+        "Student ID not found. Please login again."
+      );
+
+      return;
+    }
+
+
+    // Data that will be sent to backend
+
+    const progressData = {
+
+      studentId: Number(form.studentId),
+
+      week: form.week,
+
+      projectTitle:
+        "Student Project Tracking System",
+
+      progressTitle: form.title,
+
+      workCompleted: form.completed,
+
+      status: form.status,
+
+      percentage: Number(form.percentage),
+
+      challenges: form.challenges,
+
+      nextPlan: form.nextPlan,
+
+      fileName:
+        form.file
+          ? form.file.name
+          : "",
+    };
+
+
+    console.log(
+      "========== SENDING TO BACKEND =========="
+    );
+
+    console.log(
+      JSON.stringify(progressData, null, 2)
+    );
+
+
+    try {
+
+      const response = await fetch(
+        "http://localhost:8081/weekly-progress/submit",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(progressData),
+        }
+      );
+
+
+      const result = await response.json();
+
+
+      console.log(
+        "Backend Response:",
+        result
+      );
+
+
+      // Backend error
+      if (!response.ok) {
+
+        console.error(
+          "Backend Error:",
+          result
+        );
+
+        alert(
+          result.message ||
+          "Weekly progress submission failed!"
+        );
+
+        return;
+      }
+
+
+      // Success
+      alert(
+        "Weekly Progress Submitted Successfully!"
+      );
+
+
+      // Reset form
+
+      setForm({
+
+        studentId:
+          form.studentId,
+
+        week: "",
+
+        title: "",
+
+        completed: "",
+
+        status: "",
+
+        percentage: "",
+
+        challenges: "",
+
+        nextPlan: "",
+
+        file: null,
+
+      });
+
+
+      // Reset file input
+      e.target.reset();
+
+
+    } catch (error) {
+
+      console.error(
+        "Network Error:",
+        error
+      );
+
+      alert(
+        "Cannot connect to backend server."
+      );
+
+    }
+
   };
 
+
   return (
+
     <div className="weekly-container">
 
       <div className="weekly-card">
 
-        <h1>Weekly Progress Report</h1>
+        <h1>
+          Weekly Progress Report
+        </h1>
+
 
         <form onSubmit={handleSubmit}>
+
+
+          {/* Week + Project */}
 
           <div className="grid">
 
             <div>
-              <label>Week</label>
+
+              <label>
+                Week
+              </label>
+
               <select
                 name="week"
                 value={form.week}
                 onChange={handleChange}
                 required
               >
-                <option value="">Select Week</option>
-                <option>Week 1</option>
-                <option>Week 2</option>
-                <option>Week 3</option>
-                <option>Week 4</option>
-                <option>Week 5</option>
-                <option>Week 6</option>
-                <option>Week 7</option>
-                <option>Week 8</option>
-                <option>Week 9</option>
-                <option>Week 10</option>
-                <option>Week 11</option>
-                <option>Week 12</option>
+
+                <option value="">
+                  Select Week
+                </option>
+
+                <option>
+                  Week 1
+                </option>
+
+                <option>
+                  Week 2
+                </option>
+
+                <option>
+                  Week 3
+                </option>
+
+                <option>
+                  Week 4
+                </option>
+
+                <option>
+                  Week 5
+                </option>
+
+                <option>
+                  Week 6
+                </option>
+
               </select>
+
             </div>
 
+
             <div>
-              <label>Project Title</label>
+
+              <label>
+                Project Title
+              </label>
+
               <input
                 type="text"
                 value="Student Project Tracking System"
                 readOnly
               />
+
             </div>
 
           </div>
 
-          <label>Progress Title</label>
+
+          {/* Progress Title */}
+
+          <label>
+            Progress Title
+          </label>
+
           <input
             type="text"
             name="title"
@@ -97,7 +311,12 @@ function WeeklyProgress() {
             required
           />
 
-          <label>Work Completed</label>
+
+          {/* Work Completed */}
+
+          <label>
+            Work Completed
+          </label>
 
           <textarea
             name="completed"
@@ -107,11 +326,16 @@ function WeeklyProgress() {
             required
           />
 
+
+          {/* Status + Percentage */}
+
           <div className="grid">
 
             <div>
 
-              <label>Status</label>
+              <label>
+                Status
+              </label>
 
               <select
                 name="status"
@@ -119,17 +343,33 @@ function WeeklyProgress() {
                 onChange={handleChange}
                 required
               >
-                <option value="">Select Status</option>
-                <option>Completed</option>
-                <option>In Progress</option>
-                <option>Pending</option>
+
+                <option value="">
+                  Select Status
+                </option>
+
+                <option>
+                  Completed
+                </option>
+
+                <option>
+                  In Progress
+                </option>
+
+                <option>
+                  Pending
+                </option>
+
               </select>
 
             </div>
 
+
             <div>
 
-              <label>Completion (%)</label>
+              <label>
+                Completion (%)
+              </label>
 
               <input
                 type="number"
@@ -145,7 +385,12 @@ function WeeklyProgress() {
 
           </div>
 
-          <label>Challenges Faced</label>
+
+          {/* Challenges */}
+
+          <label>
+            Challenges Faced
+          </label>
 
           <textarea
             name="challenges"
@@ -154,14 +399,36 @@ function WeeklyProgress() {
             placeholder="Mention any issues..."
           />
 
-      
 
-          <label>Upload Screenshot / Document</label>
+          {/* Next Plan */}
+
+          <label>
+            Next Plan
+          </label>
+
+          <textarea
+            name="nextPlan"
+            value={form.nextPlan}
+            onChange={handleChange}
+            placeholder="What will you work on next?"
+          />
+
+
+          {/* File */}
+
+          <label>
+            Upload Screenshot / Document
+          </label>
 
           <input
             type="file"
+            name="file"
+            accept=".pdf,.png,.jpg,.jpeg"
             onChange={handleChange}
           />
+
+
+          {/* Submit */}
 
           <button type="submit">
             Submit Weekly Progress
@@ -172,7 +439,9 @@ function WeeklyProgress() {
       </div>
 
     </div>
+
   );
+
 }
 
 export default WeeklyProgress;

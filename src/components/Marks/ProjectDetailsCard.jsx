@@ -5,7 +5,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
-function ProjectDetailsCard() {
+function ProjectDetailsCard({ projectDetails }) {
   return (
     <div className="marks-card">
 
@@ -23,7 +23,7 @@ function ProjectDetailsCard() {
           </span>
 
           <span className="detail-value">
-            CampusProject
+            {projectDetails.projectTitle || "Loading..."}
           </span>
         </div>
 
@@ -34,7 +34,7 @@ function ProjectDetailsCard() {
           </span>
 
           <span className="detail-value">
-            Dr. Rahul Shah
+            {projectDetails.guideName || "Loading..."}
           </span>
         </div>
 
@@ -45,7 +45,7 @@ function ProjectDetailsCard() {
           </span>
 
           <span className="detail-value">
-            24 July 2026
+            {projectDetails.submissionDate || "Loading..."}
           </span>
         </div>
 
@@ -56,7 +56,7 @@ function ProjectDetailsCard() {
           </span>
 
           <span className="status completed">
-            Evaluated
+            {projectDetails.status || "Submitted"}
           </span>
         </div>
 

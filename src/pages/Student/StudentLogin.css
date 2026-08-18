@@ -1,81 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
-    overflow-x:hidden;
+body {
+    overflow-x: hidden;
 }
 
 /* ===========================
    Login Page
 =========================== */
 
-.student-login-container{
+.student-login-container {
 
-    min-height:100vh;
+    min-height: 100vh;
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    padding:120px 20px;
+    padding: 120px 20px;
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    background-repeat:no-repeat;
-
-}
-
-.student-login-card{
-
-    width:100%;
-    max-width:450px;
-
-    background:rgba(255,255,255,.22);
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    border:1px solid rgba(255,255,255,.35);
-
-    border-radius:25px;
-
-    padding:45px;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    background-repeat: no-repeat;
 
 }
 
-.student-login-card h2{
+.student-login-card {
 
-    text-align:center;
+    width: 100%;
+    max-width: 450px;
 
-    color:#173B63;
+    background: rgba(255, 255, 255, .22);
 
-    font-size:34px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    margin-bottom:10px;
+    border: 1px solid rgba(255, 255, 255, .35);
+
+    border-radius: 25px;
+
+    padding: 45px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
 
 }
 
-.subtitle{
+.student-login-card h2 {
 
-    text-align:center;
+    text-align: center;
 
-    color:#4B5563;
+    color: #173B63;
 
-    margin-bottom:35px;
+    font-size: 34px;
 
-    font-size:15px;
+    margin-bottom: 10px;
+
+}
+
+.subtitle {
+
+    text-align: center;
+
+    color: #4B5563;
+
+    margin-bottom: 35px;
+
+    font-size: 15px;
 
 }
 
@@ -83,44 +83,44 @@ body{
    Labels & Inputs
 =========================== */
 
-.student-login-card label{
+.student-login-card label {
 
-    display:block;
+    display: block;
 
-    margin-top:18px;
+    margin-top: 18px;
 
-    margin-bottom:8px;
+    margin-bottom: 8px;
 
-    color:#173B63;
+    color: #173B63;
 
-    font-weight:600;
+    font-weight: 600;
 
 }
 
 .student-login-card input[type="text"],
-.student-login-card input[type="password"]{
+.student-login-card input[type="password"] {
 
-    width:100%;
+    width: 100%;
 
-    padding:14px;
+    padding: 14px;
 
-    border:none;
+    border: none;
 
-    border-radius:10px;
+    border-radius: 10px;
 
-    outline:none;
+    outline: none;
 
-    background:rgba(255,255,255,.75);
+    background: rgba(255, 255, 255, .75);
 
-    font-size:15px;
+    font-size: 15px;
 
-    transition:.3s;
+    transition: .3s;
 
 }
 
-.student-login-card input:focus{
+.student-login-card input:focus {
 
-    border:2px solid #2F80ED;
+    border: 2px solid #2F80ED;
 
 }
 
@@ -128,59 +128,59 @@ body{
  Remember & Forgot Password
 =========================== */
 
-.login-options{
+.login-options {
 
-    margin-top:18px;
+    margin-top: 18px;
 
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    align-items:center;
+    align-items: center;
 
-    font-size:14px;
-
-}
-
-.remember{
-
-    display:flex !important;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:#173B63;
-
-    font-weight:500;
-
-    margin:0 !important;
+    font-size: 14px;
 
 }
 
-.remember input{
+.remember {
 
-    width:16px;
+    display: flex !important;
 
-    height:16px;
+    align-items: center;
 
-    cursor:pointer;
+    gap: 8px;
 
-}
+    color: #173B63;
 
-.forgot-password{
+    font-weight: 500;
 
-    color:#2F80ED;
-
-    cursor:pointer;
-
-    font-weight:500;
+    margin: 0 !important;
 
 }
 
-.forgot-password:hover{
+.remember input {
 
-    text-decoration:underline;
+    width: 16px;
+
+    height: 16px;
+
+    cursor: pointer;
+
+}
+
+.forgot-password {
+
+    color: #2F80ED;
+
+    cursor: pointer;
+
+    font-weight: 500;
+
+}
+
+.forgot-password:hover {
+
+    text-decoration: underline;
 
 }
 
@@ -188,35 +188,35 @@ body{
  Login Button
 =========================== */
 
-.login-btn{
+.login-btn {
 
-    width:100%;
+    width: 100%;
 
-    margin-top:28px;
+    margin-top: 28px;
 
-    padding:15px;
+    padding: 15px;
 
-    border:none;
+    border: none;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    background:#2F80ED;
+    background: #2F80ED;
 
-    color:white;
+    color: white;
 
-    font-size:17px;
+    font-size: 17px;
 
-    font-weight:600;
+    font-weight: 600;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:.3s;
+    transition: .3s;
 
 }
 
-.login-btn:hover{
+.login-btn:hover {
 
-    background:#1565D8;
+    background: #1565D8;
 
 }
 
@@ -224,38 +224,38 @@ body{
  Divider
 =========================== */
 
-.divider{
+.divider {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    margin:28px 0;
+    margin: 28px 0;
 
 }
 
 .divider::before,
-.divider::after{
+.divider::after {
 
-    content:"";
+    content: "";
 
-    flex:1;
+    flex: 1;
 
-    height:1px;
+    height: 1px;
 
-    background:rgba(0,0,0,.18);
+    background: rgba(0, 0, 0, .18);
 
 }
 
-.divider span{
+.divider span {
 
-    margin:0 15px;
+    margin: 0 15px;
 
-    color:#555;
+    color: #555;
 
-    font-size:14px;
+    font-size: 14px;
 
-    font-weight:600;
+    font-weight: 600;
 
 }
 
@@ -263,54 +263,54 @@ body{
  Google Button
 =========================== */
 
-.google-btn{
+.google-btn {
 
-    width:100%;
+    width: 100%;
 
-    height:52px;
+    height: 52px;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    gap:12px;
+    gap: 12px;
 
-    background:#ffffff;
+    background: #ffffff;
 
-    color:#202124;
+    color: #202124;
 
-    border:1px solid #dadce0;
+    border: 1px solid #dadce0;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    font-size:16px;
+    font-size: 16px;
 
-    font-weight:500;
+    font-weight: 500;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:.3s;
+    transition: .3s;
 
-    box-shadow:0 2px 6px rgba(0,0,0,.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
 
 }
 
-.google-btn:hover{
+.google-btn:hover {
 
-    background:#f8f9fa;
+    background: #f8f9fa;
 
-    border-color:#c6c6c6;
+    border-color: #c6c6c6;
 
-    transform:translateY(-2px);
+    transform: translateY(-2px);
 
 }
 
 /* Prevent default blue button style */
-.google-btn:focus{
+.google-btn:focus {
 
-    outline:none;
+    outline: none;
 
 }
 
@@ -318,33 +318,33 @@ body{
  Register Link
 =========================== */
 
-.register-link{
+.register-link {
 
-    text-align:center;
+    text-align: center;
 
-    margin-top:28px;
+    margin-top: 28px;
 
-    color:#475569;
+    color: #475569;
 
-    font-size:15px;
-
-}
-
-.register-link span{
-
-    color:#2F80ED;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    margin-left:6px;
+    font-size: 15px;
 
 }
 
-.register-link span:hover{
+.register-link span {
 
-    text-decoration:underline;
+    color: #2F80ED;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-left: 6px;
+
+}
+
+.register-link span:hover {
+
+    text-decoration: underline;
 
 }
 
@@ -352,27 +352,27 @@ body{
  Responsive
 =========================== */
 
-@media(max-width:500px){
+@media(max-width:500px) {
 
-    .student-login-card{
+    .student-login-card {
 
-        padding:35px 25px;
-
-    }
-
-    .student-login-card h2{
-
-        font-size:28px;
+        padding: 35px 25px;
 
     }
 
-    .login-options{
+    .student-login-card h2 {
 
-        flex-direction:column;
+        font-size: 28px;
 
-        gap:12px;
+    }
 
-        align-items:flex-start;
+    .login-options {
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        align-items: flex-start;
 
     }
 

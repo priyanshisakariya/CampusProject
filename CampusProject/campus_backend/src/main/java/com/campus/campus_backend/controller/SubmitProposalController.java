@@ -27,4 +27,11 @@ public class SubmitProposalController {
 
     }
 
+    @GetMapping("/student/{studentId}")
+    public ProposalResponseDTO getProposalByStudent(
+            @PathVariable Integer studentId) {
+
+        return submitProposalService.getProposalByStudent(studentId);
+    }
+
 }

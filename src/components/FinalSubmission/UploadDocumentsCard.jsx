@@ -3,10 +3,19 @@ import {
   FaFilePdf,
   FaFileArchive,
   FaDatabase,
-  FaFilePowerpoint,
 } from "react-icons/fa";
 
-function UploadDocumentsCard() {
+function UploadDocumentsCard({ formData, setFormData }) {
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files[0] || null,
+    }));
+  };
+
   return (
     <div className="submission-card">
 
@@ -23,7 +32,10 @@ function UploadDocumentsCard() {
 
         <input
           type="file"
+          name="finalReportFile"
           accept=".pdf"
+          onChange={handleFileChange}
+          required
         />
       </div>
 
@@ -35,7 +47,10 @@ function UploadDocumentsCard() {
 
         <input
           type="file"
+          name="sourceCodeFile"
           accept=".zip"
+          onChange={handleFileChange}
+          required
         />
       </div>
 
@@ -47,19 +62,10 @@ function UploadDocumentsCard() {
 
         <input
           type="file"
+          name="databaseFile"
           accept=".sql"
-        />
-      </div>
-
-      <div className="form-group">
-        <label>
-          <FaFilePowerpoint className="input-icon" />
-          Presentation (PPT / PPTX / PDF)
-        </label>
-
-        <input
-          type="file"
-          accept=".ppt,.pptx,.pdf"
+          onChange={handleFileChange}
+          required
         />
       </div>
 
