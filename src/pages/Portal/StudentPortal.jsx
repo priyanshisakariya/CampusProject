@@ -10,7 +10,11 @@ function StudentPortal() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <div className="portal">
+    <div
+      className={`portal ${
+        sidebarOpen ? "sidebar-open" : "sidebar-closed"
+      }`}
+    >
 
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} />
