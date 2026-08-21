@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-import logo from "../../assets/logo1.jpeg";
 
 import {
+  FaUniversity,
   FaHome,
   FaUser,
   FaFileAlt,
@@ -15,30 +15,27 @@ import {
 
 function Sidebar({ sidebarOpen }) {
   return (
-    <aside className={`sidebar ${sidebarOpen ? "" : "close"}`}>
+    <aside className={`sidebar ${sidebarOpen ? "open" : "close"}`}>
 
-      {/* Logo */}
-      <div className="sidebar-header">
-        <img
-          src={logo}
-          alt="CampusProject Logo"
-          className="sidebar-logo"
-        />
+      {/* Logo / Brand */}
+<div className="stu-sidebar-header">
 
-        <h2 className="sidebar-title">
-          CampusProject
-        </h2>
-      </div>
+  
+
+  <div className="sidebar-logo">
+  <FaUniversity className="project-logo-icon" />
+  <span>CampusProject</span>
+</div>
+
+</div>
 
       {/* Navigation */}
-      <nav className="sidebar-menu">
+      <nav className="stu-sidebar-menu">
 
         <NavLink
           to="/student-portal"
           end
-          className={({ isActive }) =>
-            isActive ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "")}
         >
           <FaHome />
           <span>Dashboard</span>
@@ -46,9 +43,7 @@ function Sidebar({ sidebarOpen }) {
 
         <NavLink
           to="/student-portal/profile"
-          className={({ isActive }) =>
-            isActive ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "")}
         >
           <FaUser />
           <span>My Profile</span>
@@ -56,9 +51,7 @@ function Sidebar({ sidebarOpen }) {
 
         <NavLink
           to="/student-portal/proposal"
-          className={({ isActive }) =>
-            isActive ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "")}
         >
           <FaFileAlt />
           <span>Submit Proposal</span>
@@ -66,9 +59,7 @@ function Sidebar({ sidebarOpen }) {
 
         <NavLink
           to="/student-portal/weekly-progress"
-          className={({ isActive }) =>
-            isActive ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "")}
         >
           <FaCalendarAlt />
           <span>Weekly Progress</span>
@@ -76,9 +67,7 @@ function Sidebar({ sidebarOpen }) {
 
         <NavLink
           to="/student-portal/final-submission"
-          className={({ isActive }) =>
-            isActive ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "")}
         >
           <FaFolderOpen />
           <span>Final Submission</span>
@@ -86,9 +75,7 @@ function Sidebar({ sidebarOpen }) {
 
         <NavLink
           to="/student-portal/marks"
-          className={({ isActive }) =>
-            isActive ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "")}
         >
           <FaAward />
           <span>My Marks</span>
@@ -96,9 +83,7 @@ function Sidebar({ sidebarOpen }) {
 
         <NavLink
           to="/student-portal/notification"
-          className={({ isActive }) =>
-            isActive ? "active" : ""
-          }
+          className={({ isActive }) => (isActive ? "active" : "")}
         >
           <FaBell />
           <span>Notifications</span>
@@ -107,7 +92,7 @@ function Sidebar({ sidebarOpen }) {
       </nav>
 
       {/* Logout */}
-      <div className="logout-area">
+      <div className="stu-logout-area">
         <NavLink to="/">
           <FaSignOutAlt />
           <span>Logout</span>
